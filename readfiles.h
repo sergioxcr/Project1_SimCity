@@ -42,6 +42,6 @@ void ParseConfig(Config& configFile);
 
 void initRegion(vector<vector<City*>> &r);
 
-void displayRegion(vector<vector<City*>> &r);
+void displayRegion();
 
 #endif

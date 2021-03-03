@@ -21,13 +21,15 @@ public:
 	int getTimeLimit() const;
 	int getRefreshRate() const;
 	virtual char getZoneType() const;
+	virtual int getPopulation() const;
 
 private:
 	int numWorkers;
 	int numGoods;
 	int timeLimit;
 	int refreshRate;
-	char zoneType;
+	int population = 0;
+	char zoneType = 'E';
 };
 
 

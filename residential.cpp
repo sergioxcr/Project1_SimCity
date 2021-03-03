@@ -6,13 +6,13 @@ using namespace std;
 
 Residential::Residential() {
 	zoneType = 'R';
-	residnetialPopulation = 0;
+	residentialPopulation = 0;
 	residentialPollution = 0;
 }
 
 Residential::Residential(char zone, int population, int pollution) {
 	this->zoneType = zone;
-	this->residnetialPopulation = population;
+	this->residentialPopulation = population;
 	this->residentialPollution = pollution;
 }
 
@@ -25,11 +25,11 @@ char Residential::getZoneType() const {
 }
 
 void Residential::setPopulation(int population) {
-	this->residnetialPopulation = population;
+	this->residentialPopulation = population;
 }
 
 int Residential::getPopulation() const {
-	return residnetialPopulation;
+	return residentialPopulation;
 }
 
 void Residential::setPollution(int pollution) {

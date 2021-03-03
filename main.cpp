@@ -10,13 +10,11 @@
 using namespace std;
 
 int main() {
-	vector<vector<City*>> region;
+
 
 	readFiles();
-
-	initRegion(region);
-
-	displayRegion(region);
+	displayRegion();
+//	
 
 	return 0;
 }
