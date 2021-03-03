@@ -53,3 +53,7 @@ int City::getRefreshRate() const {
 char City::getZoneType() const {
 	return zoneType;
 }
+
+int City::getPopulation() const {
+	return population;
+}

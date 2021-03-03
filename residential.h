@@ -20,7 +20,7 @@ class Residential : public City {
 		int getPollution() const;
 		char getZoneType() const;
 	private:
-		int residnetialPopulation;
+		int residentialPopulation;
 		int residentialPollution;
 		char zoneType;
 };
