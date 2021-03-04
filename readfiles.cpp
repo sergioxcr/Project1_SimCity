@@ -11,6 +11,7 @@ Config configFile;
 Region regionFile;
 //2D vector that stores region layout
 vector<vector<City*>> region;
+vector<vector<City*>> oldRegion;
 
 //Calls functions to read and parse files needed to make region layout
 void readFiles() {
@@ -111,6 +112,13 @@ void ParseRegion(Config& configFile, Region& regionFile)
 }
 
 void displayRegion() {
+	if (configFile.timeStep == 0) {
+		cout << "Initial Region State";
+	}
+	else {
+		cout << "Time Step: " << configFile.timeStep << endl;
+	}
+
 	for (int i = 0; i < regionFile.width * 2 + 2; i++)
 	{
 		cout << '-';
@@ -135,4 +143,15 @@ void displayRegion() {
 		cout << '-';
 	}
 	cout << endl;
+
+	oldRegion = region;
+}
+
+bool isContinue() {
+	if (configFile.timeLimit == 0 || oldRegion == region)  {
+		return false;
+	}
+	else {
+		return true;
+	}
 }

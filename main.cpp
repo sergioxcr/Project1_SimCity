@@ -11,10 +11,12 @@ using namespace std;
 
 int main() {
 
-
 	readFiles();
 	displayRegion();
-//	
-
+/*
+	while (isContinue() == true) {
+		displayRegion();
+	}
+*/
 	return 0;
 }

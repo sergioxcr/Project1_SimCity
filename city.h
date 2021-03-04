@@ -13,13 +13,13 @@ public:
 	//Sets
 	void setNumWorkers(int numWorkers);
 	void setNumGoods(int numGoods);
-	void setTimeLimit(int timeLimit);
-	void setRefreshRate(int refreshRate);
+//	void setTimeLimit(int timeLimit);
+//	void setRefreshRate(int refreshRate);
 	//Gets
 	int getWorkers() const;
 	int getGoods() const;
-	int getTimeLimit() const;
-	int getRefreshRate() const;
+//	int getTimeLimit() const;
+//	int getRefreshRate() const;
 	virtual char getZoneType() const;
 	virtual int getPopulation() const;
 

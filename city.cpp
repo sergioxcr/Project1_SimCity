@@ -33,7 +33,7 @@ void City::setNumGoods(int goods) {
 int City::getGoods() const {
 	return numGoods;
 }
-
+/*
 void City::setTimeLimit(int time) {
 	this->timeLimit = time;
 }
@@ -49,7 +49,7 @@ void City::setRefreshRate(int rate) {
 int City::getRefreshRate() const {
 	return refreshRate;
 }
-
+*/
 char City::getZoneType() const {
 	return zoneType;
 }

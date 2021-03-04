@@ -20,6 +20,7 @@ struct Config {
 	string regionFileName;
 	int timeLimit = 0;
 	int refreshRate = 0;
+	int timeStep = 0;
 };
 
 //region data
@@ -43,5 +44,7 @@ void ParseConfig(Config& configFile);
 void initRegion(vector<vector<City*>> &r);
 
 void displayRegion();
+
+bool isContinue();
 
 #endif
