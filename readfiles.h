@@ -18,9 +18,10 @@ using namespace std;
 struct Config {
 	string configFileName;
 	string regionFileName;
+	int maxTime = 0;
 	int timeLimit = 0;
 	int refreshRate = 0;
-	int timeStep = 0;
+	int timeStep = -1;
 };
 
 //region data
@@ -32,6 +33,8 @@ struct Region {
 //Calls functions to read and parse files needed to make region layout
 void readFiles();
 
+void setIndex();
+void displayIndex();
 //Prints the 2d vector containing the region layout
 void PrintRegion(Region& regionFile);
 
@@ -46,5 +49,7 @@ void initRegion(vector<vector<City*>> &r);
 void displayRegion();
 
 bool isContinue();
+
+bool isValidRefresh(int currentStep);
 
 #endif

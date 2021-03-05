@@ -12,11 +12,12 @@ using namespace std;
 int main() {
 
 	readFiles();
-	displayRegion();
-/*
+	setIndex();
 	while (isContinue() == true) {
 		displayRegion();
 	}
-*/
+
+	displayIndex();
+
 	return 0;
 }

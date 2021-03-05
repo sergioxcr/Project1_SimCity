@@ -9,14 +9,15 @@ using namespace std;
 
 Config configFile;
 Region regionFile;
+Global resources;
 //2D vector that stores region layout
 vector<vector<City*>> region;
 vector<vector<City*>> oldRegion;
 
 //Calls functions to read and parse files needed to make region layout
 void readFiles() {
-
-	cout << "Please enter config file name: ";
+	cout << "Beginning simulation" << endl;
+	cout << "Please enter the name of the configuration file: ";
 	getline(cin, configFile.configFileName);
 
 	ParseConfig(configFile);
@@ -45,6 +46,7 @@ void ParseConfig(Config& configFile)
 		else if (lineCount == 1) {
 			myText.erase(0, 11);
 			configFile.timeLimit = stoi(myText);
+			configFile.maxTime = configFile.timeLimit;
 		}
 		else if (lineCount == 2) {
 			myText.erase(0, 13);
@@ -111,14 +113,69 @@ void ParseRegion(Config& configFile, Region& regionFile)
 	ReadRegion.close();
 }
 
+void setIndex() {
+	int counter = 1;
+
+	for (auto& row : region) {
+		cout << '|';
+		for (auto& cell : row) {
+			cell->setPosition(counter);
+			counter++;
+		}
+		cout << '|' << endl;
+	}
+}
+
 void displayRegion() {
 	if (configFile.timeStep == 0) {
-		cout << "Initial Region State";
+		cout << "Initial Region State" << endl;
+	}
+	else if (configFile.timeLimit == -2) {
+		cout << "Final Region State" << endl;
 	}
 	else {
 		cout << "Time Step: " << configFile.timeStep << endl;
+		cout << "Available Workers: " << resources.numWorkers << " Available Goods: " << resources.numGoods << endl;
+		if (isValidRefresh(configFile.timeStep) == false) {
+			cout << endl;
+		}
 	}
 
+	if (isValidRefresh(configFile.timeStep) == true)
+	{
+		for (int i = 0; i < regionFile.width * 2 + 2; i++)
+		{
+			cout << '-';
+		}
+		cout << endl;
+
+		for (auto& row : region) {
+			cout << '|';
+			for (auto& cell : row) {
+				if (cell->getPopulation() <= 0) {
+					cout << cell->getZoneType() << " ";
+				}
+				else {
+					cout << cell->getPopulation() << " ";
+				}
+			}
+			cout << '|' << endl;
+		}
+
+		for (int i = 0; i < regionFile.width * 2 + 2; i++)
+		{
+			cout << '-';
+		}
+		cout << endl << endl;
+	}
+	else {
+		//don't print
+	}
+
+		oldRegion = region;
+}
+
+void displayPollution() {
 	for (int i = 0; i < regionFile.width * 2 + 2; i++)
 	{
 		cout << '-';
@@ -128,12 +185,7 @@ void displayRegion() {
 	for (auto& row : region) {
 		cout << '|';
 		for (auto& cell : row) {
-			if (cell->getPopulation() <= 0) {
-				cout << cell->getZoneType() << " ";
-			}
-			else {
-				cout << cell->getPopulation() << " ";
-			}
+			cout << cell->getPollution() << " ";
 		}
 		cout << '|' << endl;
 	}
@@ -143,15 +195,47 @@ void displayRegion() {
 		cout << '-';
 	}
 	cout << endl;
+}
 
-	oldRegion = region;
+void displayIndex() {
+
+	for (auto& row : region) {
+		cout << '|';
+		for (auto& cell : row) {
+			cout << cell->getPosition() << " ";
+		}
+		cout << '|' << endl;
+	}
+	cout << endl;
+}
+
+bool isValidRefresh(int currentStep) {
+	int counter = 1;
+	while (counter <= configFile.maxTime) {
+		counter += configFile.refreshRate;
+		if (currentStep == 0 || currentStep == 1 || currentStep == counter) {
+			return true;
+		}
+	}
+	return false;
 }
 
 bool isContinue() {
-	if (configFile.timeLimit == 0 || oldRegion == region)  {
+	if (configFile.timeLimit == -1)  {
+		configFile.timeLimit--;
+		displayRegion();
+		cout << "Pollution" << endl;
+		displayPollution();
+		cout << "The total populations for the region are:" << endl;
+		cout << "Residential: " << endl;
+		cout << "Industrial: " << endl;
+		cout << "Commercial: " << endl;
+		cout << "The total amount of pollution in the region is " << endl;
 		return false;
 	}
 	else {
+		configFile.timeStep++;
+		configFile.timeLimit--;
 		return true;
 	}
 }

@@ -6,12 +6,14 @@ using namespace std;
 
 Commercial::Commercial() {
 	zoneType = 'C';
+	commercialPosition = 0;
 	commercialPopulation = 0;
 	commercialPollution = 0;
 }
 
-Commercial::Commercial(char zone, int population, int pollution) {
+Commercial::Commercial(char zone, int population, int pollution, int position) {
 	this->zoneType = zone;
+	this->commercialPosition = position;
 	this->commercialPopulation = population;
 	this->commercialPollution = pollution;
 }
@@ -38,4 +40,12 @@ void Commercial::setPollution(int pollution) {
 
 int Commercial::getPollution() const {
 	return commercialPollution;
+}
+
+void Commercial::setPosition(int position) {
+	this->commercialPosition = position;
+}
+
+int Commercial::getPosition() const {
+	return commercialPosition;
 }
