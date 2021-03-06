@@ -35,8 +35,9 @@ void readFiles();
 
 void setIndex();
 void displayIndex();
+
 //Prints the 2d vector containing the region layout
-void PrintRegion(Region& regionFile);
+void displayRegion();
 
 //Reads the region csv file and stores it in the 2d vector making the region layout
 void ParseRegion(Config& configFile, Region& regionFile);
@@ -45,8 +46,6 @@ void ParseRegion(Config& configFile, Region& regionFile);
 void ParseConfig(Config& configFile);
 
 void initRegion(vector<vector<City*>> &r);
-
-void displayRegion();
 
 bool isContinue();
 

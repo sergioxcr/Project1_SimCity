@@ -9,7 +9,7 @@ using namespace std;
 
 Config configFile;
 Region regionFile;
-Global resources;
+City resources;
 //2D vector that stores region layout
 vector<vector<City*>> region;
 vector<vector<City*>> oldRegion;
@@ -117,12 +117,10 @@ void setIndex() {
 	int counter = 1;
 
 	for (auto& row : region) {
-		cout << '|';
 		for (auto& cell : row) {
 			cell->setPosition(counter);
 			counter++;
 		}
-		cout << '|' << endl;
 	}
 }
 
@@ -135,7 +133,7 @@ void displayRegion() {
 	}
 	else {
 		cout << "Time Step: " << configFile.timeStep << endl;
-		cout << "Available Workers: " << resources.numWorkers << " Available Goods: " << resources.numGoods << endl;
+		cout << "Available Workers: " << resources.getWorkers() << " Available Goods: " << resources.getGoods() << endl;
 		if (isValidRefresh(configFile.timeStep) == false) {
 			cout << endl;
 		}
