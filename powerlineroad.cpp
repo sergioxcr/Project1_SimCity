@@ -5,7 +5,7 @@
 using namespace std;
 
 PowerlineRoad::PowerlineRoad() {
-	zoneType = ' ';
+	zoneType = '#';
 	xCoord = -1;
 	yCoord = -1;
 }
@@ -38,4 +38,12 @@ void PowerlineRoad::setYCoord(int yPosition) {
 
 int PowerlineRoad::getYCoord() const {
 	return yCoord;
+}
+
+void PowerlineRoad::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> PowerlineRoad::getNeighbors() const {
+	return neighbors;
 }

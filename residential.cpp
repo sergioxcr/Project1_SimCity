@@ -59,3 +59,11 @@ void Residential::setYCoord(int yPosition) {
 int Residential::getYCoord() const {
 	return yCoord;
 }
+
+void Residential::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> Residential::getNeighbors() const {
+	return neighbors;
+}

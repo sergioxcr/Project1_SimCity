@@ -5,7 +5,7 @@
 using namespace std;
 
 Road::Road() {
-	zoneType = ' ';
+	zoneType = '-';
 	xCoord = -1;
 	yCoord = -1;
 }
@@ -38,4 +38,12 @@ void Road::setYCoord(int yPosition) {
 
 int Road::getYCoord() const {
 	return yCoord;
+}
+
+void Road::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> Road::getNeighbors() const {
+	return neighbors;
 }

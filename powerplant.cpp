@@ -5,7 +5,7 @@
 using namespace std;
 
 Powerplant::Powerplant() {
-	zoneType = ' ';
+	zoneType = 'P';
 	xCoord = -1;
 	yCoord = -1;
 }
@@ -38,4 +38,12 @@ void Powerplant::setYCoord(int yPosition) {
 
 int Powerplant::getYCoord() const {
 	return yCoord;
+}
+
+void Powerplant::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> Powerplant::getNeighbors() const {
+	return neighbors;
 }

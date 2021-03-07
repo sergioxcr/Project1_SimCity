@@ -2,6 +2,7 @@
 #define CITY_H
 
 //#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ public:
 
 	virtual void setXCoord(int xPosition);
 	virtual void setYCoord(int yPosition);
+	virtual void setNeighbor(char tmpZone);
 
 	//Gets
 	int getWorkers() const;
@@ -31,6 +33,7 @@ public:
 	virtual int getPollution() const;
 	virtual int getXCoord() const;
 	virtual int getYCoord() const;
+	virtual vector<char> getNeighbors() const;
 
 private:
 	int numWorkers;
@@ -42,6 +45,7 @@ private:
 	int xCoord;
 	int yCoord;
 	char zoneType = 'E';
+	vector<char>neighbors;
 };
 
 #endif

@@ -39,3 +39,11 @@ void EmptyZone::setYCoord(int yPosition) {
 int EmptyZone::getYCoord() const {
 	return yCoord;
 }
+
+void EmptyZone::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> EmptyZone::getNeighbors() const {
+	return neighbors;
+}

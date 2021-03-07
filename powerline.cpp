@@ -5,7 +5,7 @@
 using namespace std;
 
 Powerline::Powerline() {
-	zoneType = ' ';
+	zoneType = 'T';
 	xCoord = -1;
 	yCoord = -1;
 }
@@ -38,4 +38,12 @@ void Powerline::setYCoord(int yPosition) {
 
 int Powerline::getYCoord() const {
 	return yCoord;
+}
+
+void Powerline::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> Powerline::getNeighbors() const {
+	return neighbors;
 }

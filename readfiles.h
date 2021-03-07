@@ -36,6 +36,12 @@ void readFiles();
 //Sets the X and Y Coordinates for each Cell
 void setIndex();
 
+//Sets Neighbors(zoneType) for each cell
+void setNeighbors();
+
+//Displays Neighbors(zoneType) for each cell
+void displayNeighbors();
+
 //Displays the X and Y coordinates of each cell
 void displayIndex();
 

@@ -13,6 +13,7 @@ City resources;
 //2D vectors that stores region layout
 vector<vector<City*>> region;
 vector<vector<City*>> oldRegion;
+vector<char> neighbors;
 
 //Calls functions to read and parse files needed to make region layout
 void readFiles() {
@@ -109,6 +110,7 @@ void ParseRegion(Config& configFile, Region& regionFile)
 			}
 			region.push_back(c);
 			regionFile.width = c.size();
+			regionFile.height = region.size();
 	}
 	ReadRegion.close();
 }
@@ -126,6 +128,50 @@ void setIndex() {
 		}
 		x++;
 		y = 0;
+	}
+}
+
+//Sets Neighbors(zoneType) for each cell
+void setNeighbors() {
+	int xMin, xMax;
+	int yMin, yMax;
+	char tmpZone = 'F';
+
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			xMin = cell->getXCoord() - 1;
+			xMax = cell->getXCoord() + 1;
+			yMin = cell->getYCoord() - 1;
+			yMax = cell->getYCoord() + 1;
+			for (auto& subRow : region) {
+				for (auto& subCell : subRow) {
+					if ((subCell->getXCoord() >= xMin && subCell->getXCoord() <= xMax) && (subCell->getYCoord() >= yMin && subCell->getYCoord() <= yMax) && (subCell->getXCoord() >= 0 && subCell->getXCoord() <=  regionFile.height) && (subCell->getYCoord() >= 0 && subCell->getYCoord() <= regionFile.width)) {
+						if (subCell->getXCoord() == cell->getXCoord() && subCell->getYCoord() == cell->getYCoord()) {
+							//do nothing
+						}
+						else {
+							tmpZone = subCell->getZoneType();
+							cell->setNeighbor(tmpZone);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+//Displays Neighbors(zoneType) for each cell
+void displayNeighbors() {
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			neighbors = cell->getNeighbors();
+
+			for (int i = 0; i < neighbors.size(); i++)
+			{
+				cout << "Neighbor " << i + 1 << ": " << neighbors[i] << endl;
+			}
+			cout << endl;
+		}
 	}
 }
 

@@ -59,3 +59,11 @@ void Commercial::setYCoord(int yPosition) {
 int Commercial::getYCoord() const {
 	return yCoord;
 }
+
+void Commercial::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> Commercial::getNeighbors() const {
+	return neighbors;
+}

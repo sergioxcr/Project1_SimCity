@@ -82,3 +82,10 @@ int City::getPollution() const {
 	return pollution;
 }
 
+void City::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> City::getNeighbors() const {
+	return neighbors;
+}

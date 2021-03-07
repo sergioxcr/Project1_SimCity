@@ -59,3 +59,11 @@ void Industrial::setYCoord(int yPosition) {
 int Industrial::getYCoord() const {
 	return yCoord;
 }
+
+void Industrial::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> Industrial::getNeighbors() const {
+	return neighbors;
+}
