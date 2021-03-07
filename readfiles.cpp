@@ -6,11 +6,11 @@
 #include "readfiles.h"
 
 using namespace std;
-
+//Variables
 Config configFile;
 Region regionFile;
 City resources;
-//2D vector that stores region layout
+//2D vectors that stores region layout
 vector<vector<City*>> region;
 vector<vector<City*>> oldRegion;
 
@@ -113,17 +113,23 @@ void ParseRegion(Config& configFile, Region& regionFile)
 	ReadRegion.close();
 }
 
+//Sets the X and Y Coordinates for each Cell
 void setIndex() {
-	int counter = 1;
+	int x = 0;
+	int y = 0;
 
 	for (auto& row : region) {
 		for (auto& cell : row) {
-			cell->setPosition(counter);
-			counter++;
+			cell->setXCoord(x);
+			cell->setYCoord(y);
+			y++;
 		}
+		x++;
+		y = 0;
 	}
 }
 
+//Displays the region layout by printing each cell stored in a 2D vector
 void displayRegion() {
 	if (configFile.timeStep == 0) {
 		cout << "Initial Region State" << endl;
@@ -173,6 +179,7 @@ void displayRegion() {
 		oldRegion = region;
 }
 
+//Displays the pollution in each cell
 void displayPollution() {
 	for (int i = 0; i < regionFile.width * 2 + 2; i++)
 	{
@@ -195,18 +202,20 @@ void displayPollution() {
 	cout << endl;
 }
 
+//Displays the X and Y coordinates of each cell
 void displayIndex() {
 
 	for (auto& row : region) {
 		cout << '|';
 		for (auto& cell : row) {
-			cout << cell->getPosition() << " ";
+			cout << cell->getXCoord() << "," << cell->getYCoord() << " ";
 		}
 		cout << '|' << endl;
 	}
 	cout << endl;
 }
 
+//Checks if Region vector needs to be displayed depending on the Refresh Rate given by config file
 bool isValidRefresh(int currentStep) {
 	int counter = 1;
 	while (counter <= configFile.maxTime) {
@@ -218,8 +227,9 @@ bool isValidRefresh(int currentStep) {
 	return false;
 }
 
+//Checks if the time limit or if region layout has not changed from previous time step. If yes, sends flag to end program.
 bool isContinue() {
-	if (configFile.timeLimit == -1)  {
+	if (configFile.timeLimit == -1 /*|| oldRegion == region*/)  {
 		configFile.timeLimit--;
 		displayRegion();
 		cout << "Pollution" << endl;

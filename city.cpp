@@ -9,15 +9,17 @@ City::City() {
 	numGoods = 4;
 	timeLimit = 0;
 	refreshRate = 0;
-	position;
+	xCoord = 0;
+	yCoord = 0;
 }
 
-City::City(int workers, int goods, int time, int rate, int location) {
+City::City(int workers, int goods, int time, int rate, int xPositon, int yPosition) {
 	this->numWorkers = workers;
 	this->numGoods = goods;
 	this->timeLimit = time;
 	this->refreshRate = rate;
-	this->position = location;
+	this->xCoord = xPositon;
+	this->yCoord = yPosition;
 }
 
 void City::setNumWorkers(int workers) {
@@ -52,8 +54,20 @@ int City::getRefreshRate() const {
 	return refreshRate;
 }
 
-void City::setPosition(int location) {
-	this->position;
+void City::setXCoord(int xPosition) {
+	this->xCoord = xPosition;
+}
+
+int City::getXCoord() const {
+	return xCoord;
+}
+
+void City::setYCoord(int yPosition) {
+	this->yCoord = yPosition;
+}
+
+int City::getYCoord() const {
+	return yCoord;
 }
 
 char City::getZoneType() const {
@@ -68,6 +82,3 @@ int City::getPollution() const {
 	return pollution;
 }
 
-int City::getPosition() const {
-	return position;
-}

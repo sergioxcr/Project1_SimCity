@@ -6,16 +6,18 @@ using namespace std;
 
 Residential::Residential() {
 	zoneType = 'R';
-	residentialPosition = 0;
 	residentialPopulation = 0;
 	residentialPollution = 0;
+	xCoord = -1;
+	yCoord = -1;
 }
 
-Residential::Residential(char zone, int population, int pollution, int position) {
+Residential::Residential(char zone, int population, int pollution, int xPosition, int yPosition) {
 	this->zoneType = zone;
-	this->residentialPosition = position;
 	this->residentialPopulation = population;
 	this->residentialPollution = pollution;
+	this->xCoord = xPosition;
+	this->yCoord = yPosition;
 }
 
 void Residential::setZoneType(char zone) {
@@ -42,10 +44,18 @@ int Residential::getPollution() const {
 	return residentialPollution;
 }
 
-void Residential::setPosition(int position) {
-	this->residentialPosition = position;
+void Residential::setXCoord(int xPosition) {
+	this->xCoord = xPosition;
 }
 
-int Residential::getPosition() const {
-	return residentialPosition;
+int Residential::getXCoord() const {
+	return xCoord;
+}
+
+void Residential::setYCoord(int yPosition) {
+	this->yCoord = yPosition;
+}
+
+int Residential::getYCoord() const {
+	return yCoord;
 }

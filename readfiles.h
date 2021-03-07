@@ -33,7 +33,10 @@ struct Region {
 //Calls functions to read and parse files needed to make region layout
 void readFiles();
 
+//Sets the X and Y Coordinates for each Cell
 void setIndex();
+
+//Displays the X and Y coordinates of each cell
 void displayIndex();
 
 //Prints the 2d vector containing the region layout
@@ -45,10 +48,10 @@ void ParseRegion(Config& configFile, Region& regionFile);
 //Reads the config txt file and stores the config data in a struct
 void ParseConfig(Config& configFile);
 
-void initRegion(vector<vector<City*>> &r);
-
+//Checks if the time limit or if region layout has not changed from previous time step. If yes, sends flag to end program.
 bool isContinue();
 
+//Checks if Region vector needs to be displayed depending on the Refresh Rate given by config file
 bool isValidRefresh(int currentStep);
 
 #endif

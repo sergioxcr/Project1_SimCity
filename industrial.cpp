@@ -8,12 +8,16 @@ Industrial::Industrial() {
 	zoneType = 'I';
 	industrialPopulation = 0;
 	industrialPollution = 0;
+	xCoord = -1;
+	yCoord = -1;
 }
 
-Industrial::Industrial(char zone, int population, int pollution) {
+Industrial::Industrial(char zone, int population, int pollution, int xPosition, int yPosition) {
 	this->zoneType = zone;
 	this->industrialPopulation = population;
 	this->industrialPollution = pollution;
+	this->xCoord = xPosition;
+	this->yCoord = yPosition;
 }
 
 void Industrial::setZoneType(char zone) {
@@ -38,4 +42,20 @@ void Industrial::setPollution(int pollution) {
 
 int Industrial::getPollution() const {
 	return industrialPollution;
+}
+
+void Industrial::setXCoord(int xPosition) {
+	this->xCoord = xPosition;
+}
+
+int Industrial::getXCoord() const {
+	return xCoord;
+}
+
+void Industrial::setYCoord(int yPosition) {
+	this->yCoord = yPosition;
+}
+
+int Industrial::getYCoord() const {
+	return yCoord;
 }

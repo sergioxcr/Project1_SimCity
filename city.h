@@ -9,14 +9,16 @@ class City {
 public:
 	//constructors
 	City();
-	City(int workers, int goods, int time, int rate, int position);
+	City(int workers, int goods, int time, int rate, int xPosition, int yPosition);
+
 	//Sets
 	void setNumWorkers(int numWorkers);
 	void setNumGoods(int numGoods);
 	void setTimeLimit(int timeLimit);
 	void setRefreshRate(int refreshRate);
 
-	virtual void setPosition(int position);
+	virtual void setXCoord(int xPosition);
+	virtual void setYCoord(int yPosition);
 
 	//Gets
 	int getWorkers() const;
@@ -27,7 +29,8 @@ public:
 	virtual char getZoneType() const;
 	virtual int getPopulation() const;
 	virtual int getPollution() const;
-	virtual int getPosition() const;
+	virtual int getXCoord() const;
+	virtual int getYCoord() const;
 
 private:
 	int numWorkers;
@@ -36,7 +39,8 @@ private:
 	int refreshRate;
 	int population = 0;
 	int pollution = 0;
-	int position = 0;
+	int xCoord;
+	int yCoord;
 	char zoneType = 'E';
 };
 

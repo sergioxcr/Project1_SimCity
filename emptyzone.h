@@ -10,12 +10,18 @@ class EmptyZone : public City {
 public:
 	//constructors
 	EmptyZone();
-	EmptyZone(char zone);
+	EmptyZone(char zone, int xPosition, int yPosition);
 	//Sets
 	void setZoneType(char zone);
+	void setXCoord(int xPosition);
+	void setYCoord(int yPosition);
 	//Gets
+	int getXCoord() const;
+	int getYCoord() const;
 	char getZoneType() const;
 private:
+	int xCoord;
+	int yCoord;
 	char zoneType;
 };
 

@@ -17,7 +17,7 @@ int main() {
 		displayRegion();
 	}
 
-	displayIndex();
+//	displayIndex();
 
 	return 0;
 }
