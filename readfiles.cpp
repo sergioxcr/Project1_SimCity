@@ -6,16 +6,19 @@
 #include "readfiles.h"
 
 using namespace std;
-
+//Variables
 Config configFile;
 Region regionFile;
-//2D vector that stores region layout
+City resources;
+//2D vectors that stores region layout
 vector<vector<City*>> region;
+vector<vector<City*>> oldRegion;
+vector<char> neighbors;
 
 //Calls functions to read and parse files needed to make region layout
 void readFiles() {
-
-	cout << "Please enter config file name: ";
+	cout << "Beginning simulation" << endl;
+	cout << "Please enter the name of the configuration file: ";
 	getline(cin, configFile.configFileName);
 
 	ParseConfig(configFile);
@@ -44,6 +47,7 @@ void ParseConfig(Config& configFile)
 		else if (lineCount == 1) {
 			myText.erase(0, 11);
 			configFile.timeLimit = stoi(myText);
+			configFile.maxTime = configFile.timeLimit;
 		}
 		else if (lineCount == 2) {
 			myText.erase(0, 13);
@@ -106,11 +110,123 @@ void ParseRegion(Config& configFile, Region& regionFile)
 			}
 			region.push_back(c);
 			regionFile.width = c.size();
+			regionFile.height = region.size();
 	}
 	ReadRegion.close();
 }
 
+//Sets the X and Y Coordinates for each Cell
+void setIndex() {
+	int x = 0;
+	int y = 0;
+
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			cell->setXCoord(x);
+			cell->setYCoord(y);
+			y++;
+		}
+		x++;
+		y = 0;
+	}
+}
+
+//Sets Neighbors(zoneType) for each cell
+void setNeighbors() {
+	int xMin, xMax;
+	int yMin, yMax;
+	char tmpZone = 'F';
+
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			xMin = cell->getXCoord() - 1;
+			xMax = cell->getXCoord() + 1;
+			yMin = cell->getYCoord() - 1;
+			yMax = cell->getYCoord() + 1;
+			for (auto& subRow : region) {
+				for (auto& subCell : subRow) {
+					if ((subCell->getXCoord() >= xMin && subCell->getXCoord() <= xMax) && (subCell->getYCoord() >= yMin && subCell->getYCoord() <= yMax) && (subCell->getXCoord() >= 0 && subCell->getXCoord() <=  regionFile.height) && (subCell->getYCoord() >= 0 && subCell->getYCoord() <= regionFile.width)) {
+						if (subCell->getXCoord() == cell->getXCoord() && subCell->getYCoord() == cell->getYCoord()) {
+							//do nothing
+						}
+						else {
+							tmpZone = subCell->getZoneType();
+							cell->setNeighbor(tmpZone);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+//Displays Neighbors(zoneType) for each cell
+void displayNeighbors() {
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			neighbors = cell->getNeighbors();
+
+			for (int i = 0; i < neighbors.size(); i++)
+			{
+				cout << "Neighbor " << i + 1 << ": " << neighbors[i] << endl;
+			}
+			cout << endl;
+		}
+	}
+}
+
+//Displays the region layout by printing each cell stored in a 2D vector
 void displayRegion() {
+	if (configFile.timeStep == 0) {
+		cout << "Initial Region State" << endl;
+	}
+	else if (configFile.timeLimit == -2) {
+		cout << "Final Region State" << endl;
+	}
+	else {
+		cout << "Time Step: " << configFile.timeStep << endl;
+		cout << "Available Workers: " << resources.getWorkers() << " Available Goods: " << resources.getGoods() << endl;
+		if (isValidRefresh(configFile.timeStep) == false) {
+			cout << endl;
+		}
+	}
+
+	if (isValidRefresh(configFile.timeStep) == true)
+	{
+		for (int i = 0; i < regionFile.width * 2 + 2; i++)
+		{
+			cout << '-';
+		}
+		cout << endl;
+
+		for (auto& row : region) {
+			cout << '|';
+			for (auto& cell : row) {
+				if (cell->getPopulation() <= 0) {
+					cout << cell->getZoneType() << " ";
+				}
+				else {
+					cout << cell->getPopulation() << " ";
+				}
+			}
+			cout << '|' << endl;
+		}
+
+		for (int i = 0; i < regionFile.width * 2 + 2; i++)
+		{
+			cout << '-';
+		}
+		cout << endl << endl;
+	}
+	else {
+		//don't print
+	}
+
+		oldRegion = region;
+}
+
+//Displays the pollution in each cell
+void displayPollution() {
 	for (int i = 0; i < regionFile.width * 2 + 2; i++)
 	{
 		cout << '-';
@@ -120,12 +236,7 @@ void displayRegion() {
 	for (auto& row : region) {
 		cout << '|';
 		for (auto& cell : row) {
-			if (cell->getPopulation() <= 0) {
-				cout << cell->getZoneType() << " ";
-			}
-			else {
-				cout << cell->getPopulation() << " ";
-			}
+			cout << cell->getPollution() << " ";
 		}
 		cout << '|' << endl;
 	}
@@ -135,4 +246,50 @@ void displayRegion() {
 		cout << '-';
 	}
 	cout << endl;
+}
+
+//Displays the X and Y coordinates of each cell
+void displayIndex() {
+
+	for (auto& row : region) {
+		cout << '|';
+		for (auto& cell : row) {
+			cout << cell->getXCoord() << "," << cell->getYCoord() << " ";
+		}
+		cout << '|' << endl;
+	}
+	cout << endl;
+}
+
+//Checks if Region vector needs to be displayed depending on the Refresh Rate given by config file
+bool isValidRefresh(int currentStep) {
+	int counter = 1;
+	while (counter <= configFile.maxTime) {
+		counter += configFile.refreshRate;
+		if (currentStep == 0 || currentStep == 1 || currentStep == counter) {
+			return true;
+		}
+	}
+	return false;
+}
+
+//Checks if the time limit or if region layout has not changed from previous time step. If yes, sends flag to end program.
+bool isContinue() {
+	if (configFile.timeLimit == -1 /*|| oldRegion == region*/)  {
+		configFile.timeLimit--;
+		displayRegion();
+		cout << "Pollution" << endl;
+		displayPollution();
+		cout << "The total populations for the region are:" << endl;
+		cout << "Residential: " << endl;
+		cout << "Industrial: " << endl;
+		cout << "Commercial: " << endl;
+		cout << "The total amount of pollution in the region is " << endl;
+		return false;
+	}
+	else {
+		configFile.timeStep++;
+		configFile.timeLimit--;
+		return true;
+	}
 }

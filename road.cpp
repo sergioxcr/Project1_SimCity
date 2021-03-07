@@ -6,10 +6,14 @@ using namespace std;
 
 Road::Road() {
 	zoneType = '-';
+	xCoord = -1;
+	yCoord = -1;
 }
 
-Road::Road(char zone) {
+Road::Road(char zone, int xPosition, int yPosition) {
 	this->zoneType = zone;
+	this->xCoord = xPosition;
+	this->yCoord = yPosition;
 }
 
 void Road::setZoneType(char zone) {
@@ -18,4 +22,28 @@ void Road::setZoneType(char zone) {
 
 char Road::getZoneType() const {
 	return zoneType;
+}
+
+void Road::setXCoord(int xPosition) {
+	this->xCoord = xPosition;
+}
+
+int Road::getXCoord() const {
+	return xCoord;
+}
+
+void Road::setYCoord(int yPosition) {
+	this->yCoord = yPosition;
+}
+
+int Road::getYCoord() const {
+	return yCoord;
+}
+
+void Road::setNeighbor(char tmpZone) {
+	neighbors.push_back(tmpZone);
+}
+
+vector<char> Road::getNeighbors() const {
+	return neighbors;
 }
