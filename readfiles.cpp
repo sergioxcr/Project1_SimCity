@@ -177,6 +177,50 @@ void displayNeighbors() {
 	}
 }
 
+void setNeighborsPopulation() {
+	int xMin, xMax;
+	int yMin, yMax;
+	int tmpPopulation = 0;
+
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			xMin = cell->getXCoord() - 1;
+			xMax = cell->getXCoord() + 1;
+			yMin = cell->getYCoord() - 1;
+			yMax = cell->getYCoord() + 1;
+			for (auto& subRow : region) {
+				for (auto& subCell : subRow) {
+					if ((subCell->getXCoord() >= xMin && subCell->getXCoord() <= xMax) && (subCell->getYCoord() >= yMin && subCell->getYCoord() <= yMax) && (subCell->getXCoord() >= 0 && subCell->getXCoord() <= regionFile.height) && (subCell->getYCoord() >= 0 && subCell->getYCoord() <= regionFile.width)) {
+						if (subCell->getXCoord() == cell->getXCoord() && subCell->getYCoord() == cell->getYCoord()) {
+							//do nothing
+						}
+						else {
+							tmpPopulation = subCell->getPopulation();
+							cell->setNeighborPopulation(tmpPopulation);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+void displayNeighborsPopulation() {
+	vector<int> neighborsPopulation;
+
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			neighborsPopulation = cell->getNeighborsPopulation();
+			cout << "Zone Coordinates: (" << cell->getXCoord() << "," << cell->getYCoord() << ")  Zone Type: " << cell->getZoneType() << endl;
+			for (int i = 0; i < neighborsPopulation.size(); i++)
+			{
+				cout << "Neighbor " << i + 1 << ": " << neighborsPopulation[i] << endl;
+			}
+			cout << endl;
+		}
+	}
+}
+
 //Displays the region layout by printing each cell stored in a 2D vector
 void displayRegion() {
 	if (configFile.timeStep == 0) {

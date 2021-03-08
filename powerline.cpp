@@ -47,3 +47,11 @@ void Powerline::setNeighbor(char tmpZone) {
 vector<char> Powerline::getNeighbors() const {
 	return neighbors;
 }
+
+void Powerline::setNeighborPopulation(int tmpPopulation) {
+	neighborsPopulation.push_back(tmpPopulation);
+}
+
+vector<int> Powerline::getNeighborsPopulation() const {
+	return neighborsPopulation;
+}

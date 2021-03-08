@@ -42,6 +42,10 @@ void setNeighbors();
 //Displays Neighbors(zoneType) for each cell
 void displayNeighbors();
 
+void setNeighborsPopulation();
+
+void displayNeighborsPopulation();
+
 //Displays the X and Y coordinates of each cell
 void displayIndex();
 

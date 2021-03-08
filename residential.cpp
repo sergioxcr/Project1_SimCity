@@ -67,3 +67,11 @@ void Residential::setNeighbor(char tmpZone) {
 vector<char> Residential::getNeighbors() const {
 	return neighbors;
 }
+
+void Residential::setNeighborPopulation(int tmpPopulation) {
+	neighborsPopulation.push_back(tmpPopulation);
+}
+
+vector<int> Residential::getNeighborsPopulation() const {
+	return neighborsPopulation;
+}

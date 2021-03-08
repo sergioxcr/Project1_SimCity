@@ -47,3 +47,11 @@ void EmptyZone::setNeighbor(char tmpZone) {
 vector<char> EmptyZone::getNeighbors() const {
 	return neighbors;
 }
+
+void EmptyZone::setNeighborPopulation(int tmpPopulation) {
+	neighborsPopulation.push_back(tmpPopulation);
+}
+
+vector<int> EmptyZone::getNeighborsPopulation() const {
+	return neighborsPopulation;
+}

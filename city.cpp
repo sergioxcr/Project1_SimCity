@@ -96,6 +96,14 @@ vector<char> City::getNeighbors() const {
 	return neighbors;
 }
 
+void City::setNeighborPopulation(int tmpPopulation) {
+	neighborsPopulation.push_back(tmpPopulation);
+}
+
+vector<int> City::getNeighborsPopulation() const {
+	return neighborsPopulation;
+}
+
 bool isLargerPopulation(vector<vector<City*>>& tmpRegion, int tmpPopulation, char tmpZoneType)
 {
 	for (auto& row : tmpRegion) {

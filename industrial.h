@@ -18,6 +18,7 @@ class Industrial : public City {
 		void setXCoord(int xPosition);
 		void setYCoord(int yPosition);
 		void setNeighbor(char tmpZone);
+		void setNeighborPopulation(int tmpPopulation);
 		//Gets
 		int getPopulation() const;
 		int getPollution() const;
@@ -25,6 +26,7 @@ class Industrial : public City {
 		int getYCoord() const;
 		char getZoneType() const;
 		vector<char> getNeighbors() const;
+		vector<int> getNeighborsPopulation() const;
 	private:
 		int industrialPopulation;
 		int industrialPollution;
@@ -32,6 +34,7 @@ class Industrial : public City {
 		int yCoord;
 		char zoneType;
 		vector<char>neighbors;
+		vector<int>neighborsPopulation;
 };
 
 #endif

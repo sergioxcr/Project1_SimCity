@@ -18,6 +18,7 @@ class Commercial : public City {
 		void setXCoord(int xPosition);
 		void setYCoord(int yPosition);
 		void setNeighbor(char tmpZone);
+		void setNeighborPopulation(int tmpPopulation);
 		//Gets
 		int getPopulation() const;
 		int getPollution() const;
@@ -25,13 +26,15 @@ class Commercial : public City {
 		int getYCoord() const;
 		char getZoneType() const override;
 		vector<char> getNeighbors() const;
+		vector<int> getNeighborsPopulation() const;
 	private:
-		int commercialPopulation;
+		int commercialPopulation; 
 		int commercialPollution;
 		int xCoord;
 		int yCoord;
 		char zoneType;
 		vector<char>neighbors;
+		vector<int>neighborsPopulation;
 };
 
 void increaseCommercial(vector<vector<City*>> &, City &);

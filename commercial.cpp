@@ -68,6 +68,14 @@ vector<char> Commercial::getNeighbors() const {
 	return neighbors;
 }
 
+void Commercial::setNeighborPopulation(int tmpPopulation) {
+	neighborsPopulation.push_back(tmpPopulation);
+}
+
+vector<int> Commercial::getNeighborsPopulation() const {
+	return neighborsPopulation;
+}
+
 void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 	vector<City*> canGrowRule1, canGrowRule2, canGrowRule3;
 	vector<char> neighbors;

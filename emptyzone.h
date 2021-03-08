@@ -16,16 +16,19 @@ class EmptyZone : public City {
 		void setXCoord(int xPosition);
 		void setYCoord(int yPosition);
 		void setNeighbor(char tmpZone);
+		void setNeighborPopulation(int tmpPopulation);
 		//Gets
 		int getXCoord() const;
 		int getYCoord() const;
 		char getZoneType() const;
 		vector<char> getNeighbors() const;
+		vector<int> getNeighborsPopulation() const;
 	private:
 		int xCoord;
 		int yCoord;
 		char zoneType;
 		vector<char>neighbors;
+		vector<int>neighborsPopulation;
 };
 
 #endif

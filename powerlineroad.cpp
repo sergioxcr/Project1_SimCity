@@ -47,3 +47,11 @@ void PowerlineRoad::setNeighbor(char tmpZone) {
 vector<char> PowerlineRoad::getNeighbors() const {
 	return neighbors;
 }
+
+void PowerlineRoad::setNeighborPopulation(int tmpPopulation) {
+	neighborsPopulation.push_back(tmpPopulation);
+}
+
+vector<int> PowerlineRoad::getNeighborsPopulation() const {
+	return neighborsPopulation;
+}

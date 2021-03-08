@@ -47,3 +47,11 @@ void Road::setNeighbor(char tmpZone) {
 vector<char> Road::getNeighbors() const {
 	return neighbors;
 }
+
+void Road::setNeighborPopulation(int tmpPopulation) {
+	neighborsPopulation.push_back(tmpPopulation);
+}
+
+vector<int> Road::getNeighborsPopulation() const {
+	return neighborsPopulation;
+}

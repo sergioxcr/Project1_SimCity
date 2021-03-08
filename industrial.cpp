@@ -67,3 +67,11 @@ void Industrial::setNeighbor(char tmpZone) {
 vector<char> Industrial::getNeighbors() const {
 	return neighbors;
 }
+
+void Industrial::setNeighborPopulation(int tmpPopulation) {
+	neighborsPopulation.push_back(tmpPopulation);
+}
+
+vector<int> Industrial::getNeighborsPopulation() const {
+	return neighborsPopulation;
+}

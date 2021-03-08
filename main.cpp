@@ -14,7 +14,9 @@ int main() {
 	readFiles();
 	setIndex();
 	setNeighbors();
+	setNeighborsPopulation();
 //	displayNeighbors();
+//	displayNeighborsPopulation();
 
 	while (isContinue() == true) {
 		displayRegion();

@@ -21,6 +21,7 @@ public:
 	virtual void setXCoord(int xPosition);
 	virtual void setYCoord(int yPosition);
 	virtual void setNeighbor(char tmpZone);
+	virtual void setNeighborPopulation(int tmpPopulation);
 	virtual void setPopulation(int population);
 
 	//Gets
@@ -35,6 +36,7 @@ public:
 	virtual int getXCoord() const;
 	virtual int getYCoord() const;
 	virtual vector<char> getNeighbors() const;
+	virtual vector<int> getNeighborsPopulation() const;
 
 private:
 	int numWorkers;
@@ -47,6 +49,7 @@ private:
 	int yCoord;
 	char zoneType = 'E';
 	vector<char>neighbors;
+	vector<int>neighborsPopulation;
 };
 
 //check for larger population of same zone type

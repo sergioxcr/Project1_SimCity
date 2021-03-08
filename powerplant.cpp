@@ -47,3 +47,11 @@ void Powerplant::setNeighbor(char tmpZone) {
 vector<char> Powerplant::getNeighbors() const {
 	return neighbors;
 }
+
+void Powerplant::setNeighborPopulation(int tmpPopulation) {
+	neighborsPopulation.push_back(tmpPopulation);
+}
+
+vector<int> Powerplant::getNeighborsPopulation() const {
+	return neighborsPopulation;
+}
