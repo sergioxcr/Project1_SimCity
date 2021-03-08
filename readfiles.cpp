@@ -13,7 +13,7 @@ City resources;
 //2D vectors that stores region layout
 vector<vector<City*>> region;
 vector<vector<City*>> oldRegion;
-vector<char> neighbors;
+
 
 //Calls functions to read and parse files needed to make region layout
 void readFiles() {
@@ -162,10 +162,12 @@ void setNeighbors() {
 
 //Displays Neighbors(zoneType) for each cell
 void displayNeighbors() {
+	vector<char> neighbors;
+
 	for (auto& row : region) {
 		for (auto& cell : row) {
 			neighbors = cell->getNeighbors();
-
+			cout << "Zone Coordinates: (" << cell->getXCoord() << "," << cell->getYCoord() << ")  Zone Type: " << cell->getZoneType() << endl;
 			for (int i = 0; i < neighbors.size(); i++)
 			{
 				cout << "Neighbor " << i + 1 << ": " << neighbors[i] << endl;
@@ -293,3 +295,16 @@ bool isContinue() {
 		return true;
 	}
 }
+
+void nextStep() {
+	//check commercial increase
+	increaseCommercial(region, resources);
+}
+
+/*
+for (auto& row : region) {
+	for (auto& cell : row) {
+		
+	}
+}
+*/

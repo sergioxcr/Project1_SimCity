@@ -67,3 +67,40 @@ void Commercial::setNeighbor(char tmpZone) {
 vector<char> Commercial::getNeighbors() const {
 	return neighbors;
 }
+
+void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
+	vector<City*> canGrowRule1, canGrowRule2, canGrowRule3;
+	vector<char> neighbors;
+	int flag = 0;
+
+	if (tmpResources.getWorkers() > 0 && tmpResources.getGoods() > 0) {
+		for (auto& row : tmpRegion) {
+			for (auto& cell : row) {
+				neighbors = cell->getNeighbors();
+				if (cell->getZoneType() == 'C') {
+					if (cell->getPopulation() == 0 && isPowerlineAdjacent(neighbors) == true) {
+						canGrowRule1.push_back(cell);
+						flag = 1;
+					}
+					else if (cell->getPopulation() == 0 && isPopulationAdjacent(neighbors) == true) {
+
+					}
+				}
+			}
+		}
+	}
+}
+//if (isLargerPopulation(tmpRegion, cell->getPopulation(), cell->getZoneType()) == true) {
+
+//cell->setPopulation(cell->getPopulation() + 1);
+
+bool isPowerlineAdjacent(vector<char> neighbors) {
+	for (int i = 0; i < neighbors.size(); i++)
+	{
+		if (neighbors[i] == 'T') {
+			return true;
+		}
+	}
+
+	return false;
+}

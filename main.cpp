@@ -18,6 +18,7 @@ int main() {
 
 	while (isContinue() == true) {
 		displayRegion();
+		nextStep();
 	}
 
 //	displayIndex();

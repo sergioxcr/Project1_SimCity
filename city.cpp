@@ -5,21 +5,23 @@
 using namespace std;
 
 City::City() {
-	numWorkers = 2;
-	numGoods = 4;
+	numWorkers = 0;
+	numGoods = 0;
 	timeLimit = 0;
 	refreshRate = 0;
 	xCoord = 0;
 	yCoord = 0;
+	cityPopulation = 0;
 }
 
-City::City(int workers, int goods, int time, int rate, int xPositon, int yPosition) {
+City::City(int workers, int goods, int time, int rate, int xPositon, int yPosition, int population) {
 	this->numWorkers = workers;
 	this->numGoods = goods;
 	this->timeLimit = time;
 	this->refreshRate = rate;
 	this->xCoord = xPositon;
 	this->yCoord = yPosition;
+	this->cityPopulation = population;
 }
 
 void City::setNumWorkers(int workers) {
@@ -74,8 +76,12 @@ char City::getZoneType() const {
 	return zoneType;
 }
 
+void City::setPopulation(int population) {
+	this->cityPopulation = population;
+}
+
 int City::getPopulation() const {
-	return population;
+	return cityPopulation;
 }
 
 int City::getPollution() const {
@@ -88,4 +94,19 @@ void City::setNeighbor(char tmpZone) {
 
 vector<char> City::getNeighbors() const {
 	return neighbors;
+}
+
+bool isLargerPopulation(vector<vector<City*>>& tmpRegion, int tmpPopulation, char tmpZoneType)
+{
+	for (auto& row : tmpRegion) {
+		for (auto& cell : row) {
+			if (cell->getZoneType() == tmpZoneType) {
+				if (cell->getPopulation() > tmpPopulation) {
+					return false;
+				}
+			}
+		}
+	}
+
+	return true;
 }

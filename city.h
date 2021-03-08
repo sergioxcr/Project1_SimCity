@@ -10,7 +10,7 @@ class City {
 public:
 	//constructors
 	City();
-	City(int workers, int goods, int time, int rate, int xPosition, int yPosition);
+	City(int workers, int goods, int time, int rate, int xPosition, int yPosition, int population);
 
 	//Sets
 	void setNumWorkers(int numWorkers);
@@ -21,6 +21,7 @@ public:
 	virtual void setXCoord(int xPosition);
 	virtual void setYCoord(int yPosition);
 	virtual void setNeighbor(char tmpZone);
+	virtual void setPopulation(int population);
 
 	//Gets
 	int getWorkers() const;
@@ -40,12 +41,22 @@ private:
 	int numGoods;
 	int timeLimit;
 	int refreshRate;
-	int population = 0;
+	int cityPopulation = 0;
 	int pollution = 0;
 	int xCoord;
 	int yCoord;
 	char zoneType = 'E';
 	vector<char>neighbors;
 };
+
+//check for larger population of same zone type
+bool isLargerPopulation(vector<vector<City*>>, int, char);
+
+//check for larger num of neighbors of same zone type
+
+//check for smaller y coordinate
+
+//check for smaller x coordinate
+
 
 #endif

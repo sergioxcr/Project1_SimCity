@@ -60,4 +60,6 @@ bool isContinue();
 //Checks if Region vector needs to be displayed depending on the Refresh Rate given by config file
 bool isValidRefresh(int currentStep);
 
+void nextStep();
+
 #endif

@@ -34,4 +34,6 @@ class Commercial : public City {
 		vector<char>neighbors;
 };
 
+void increaseCommercial(vector<vector<City*>> &, City &);
+
 #endif
