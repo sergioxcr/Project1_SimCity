@@ -5,20 +5,22 @@
 using namespace std;
 
 City::City() {
-	numWorkers = 0;
-	numGoods = 0;
+	numWorkers = 10;
+	numGoods = 10;
 	timeLimit = 0;
 	refreshRate = 0;
+	index = 0;
 	xCoord = 0;
 	yCoord = 0;
 	cityPopulation = 0;
 }
 
-City::City(int workers, int goods, int time, int rate, int xPositon, int yPosition, int population) {
+City::City(int workers, int goods, int time, int rate, int xPositon, int yPosition, int population, int index) {
 	this->numWorkers = workers;
 	this->numGoods = goods;
 	this->timeLimit = time;
 	this->refreshRate = rate;
+	this->index = index;
 	this->xCoord = xPositon;
 	this->yCoord = yPosition;
 	this->cityPopulation = population;
@@ -104,17 +106,39 @@ vector<int> City::getNeighborsPopulation() const {
 	return neighborsPopulation;
 }
 
-bool isLargerPopulation(vector<vector<City*>>& tmpRegion, int tmpPopulation, char tmpZoneType)
-{
+void City::setIndex(int index) {
+	this->index;
+}
+
+int City::getIndex() const {
+	return index;
+}
+
+void increasePopulation(vector<vector<City*>>& tmpRegion, int index) {
 	for (auto& row : tmpRegion) {
 		for (auto& cell : row) {
-			if (cell->getZoneType() == tmpZoneType) {
-				if (cell->getPopulation() > tmpPopulation) {
-					return false;
-				}
+			if (cell->getIndex() == index) {
+				cell->setPopulation(cell->getPopulation() + 1);
 			}
 		}
 	}
-
-	return true;
 }
+
+int isLargerPopulation(vector<City*> tmpRegion)
+{
+	int tmpPopulation = 0;
+	int index = -1;
+
+	for (auto& cell : tmpRegion) {
+		if (cell->getPopulation() > tmpPopulation) {
+			tmpPopulation = cell->getPopulation();
+			index = cell->getIndex();
+		}
+		else if (cell->getPopulation() == tmpPopulation) {
+			index = -1;
+		}
+	}
+
+	return index;
+}
+

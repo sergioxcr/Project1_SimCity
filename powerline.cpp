@@ -6,12 +6,14 @@ using namespace std;
 
 Powerline::Powerline() {
 	zoneType = 'T';
+	powerlineIndex = 0;
 	xCoord = -1;
 	yCoord = -1;
 }
 
-Powerline::Powerline(char zone, int xPosition, int yPosition) {
+Powerline::Powerline(char zone, int xPosition, int yPosition, int index) {
 	this->zoneType = zone;
+	this->powerlineIndex = index;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
 }
@@ -54,4 +56,12 @@ void Powerline::setNeighborPopulation(int tmpPopulation) {
 
 vector<int> Powerline::getNeighborsPopulation() const {
 	return neighborsPopulation;
+}
+
+void Powerline::setIndex(int index) {
+	this->powerlineIndex = index;
+}
+
+int Powerline::getIndex() const {
+	return powerlineIndex;
 }

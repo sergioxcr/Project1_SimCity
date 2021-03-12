@@ -6,14 +6,16 @@ using namespace std;
 
 Residential::Residential() {
 	zoneType = 'R';
+	residentialIndex = 0;
 	residentialPopulation = 0;
 	residentialPollution = 0;
 	xCoord = -1;
 	yCoord = -1;
 }
 
-Residential::Residential(char zone, int population, int pollution, int xPosition, int yPosition) {
+Residential::Residential(char zone, int population, int pollution, int xPosition, int yPosition, int index) {
 	this->zoneType = zone;
+	this->residentialIndex = index;
 	this->residentialPopulation = population;
 	this->residentialPollution = pollution;
 	this->xCoord = xPosition;
@@ -74,4 +76,12 @@ void Residential::setNeighborPopulation(int tmpPopulation) {
 
 vector<int> Residential::getNeighborsPopulation() const {
 	return neighborsPopulation;
+}
+
+void Residential::setIndex(int index) {
+	this->residentialIndex = index;
+}
+
+int Residential::getIndex() const {
+	return residentialIndex;
 }

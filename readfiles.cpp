@@ -116,7 +116,7 @@ void ParseRegion(Config& configFile, Region& regionFile)
 }
 
 //Sets the X and Y Coordinates for each Cell
-void setIndex() {
+void setCoordinates() {
 	int x = 0;
 	int y = 0;
 
@@ -129,6 +129,34 @@ void setIndex() {
 		x++;
 		y = 0;
 	}
+}
+
+void setIndex() {
+	int counter = 1;
+
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			cell->setIndex(counter);
+			counter++;
+		}
+	}
+}
+
+void displayIndex() {
+
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			if (cell->getIndex() < 10) {
+				cout << "00";
+			}
+			else if (cell->getIndex() < 100) {
+				cout << "0";
+			}
+			cout << cell->getIndex() << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
 }
 
 //Sets Neighbors(zoneType) for each cell
@@ -295,7 +323,7 @@ void displayPollution() {
 }
 
 //Displays the X and Y coordinates of each cell
-void displayIndex() {
+void displayCoordinates() {
 
 	for (auto& row : region) {
 		cout << '|';
@@ -303,6 +331,28 @@ void displayIndex() {
 			cout << cell->getXCoord() << "," << cell->getYCoord() << " ";
 		}
 		cout << '|' << endl;
+	}
+	cout << endl;
+}
+
+void displayPopulation() {
+	for (int i = 0; i < regionFile.width * 2 + 2; i++)
+	{
+		cout << '-';
+	}
+	cout << endl;
+
+	for (auto& row : region) {
+		cout << '|';
+		for (auto& cell : row) {
+			cout << cell->getPopulation() << " ";
+		}
+		cout << '|' << endl;
+	}
+
+	for (int i = 0; i < regionFile.width * 2 + 2; i++)
+	{
+		cout << '-';
 	}
 	cout << endl;
 }

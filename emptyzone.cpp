@@ -6,12 +6,14 @@ using namespace std;
 
 EmptyZone::EmptyZone() {
 	zoneType = ' ';
+	emptyIndex = 0;
 	xCoord = -1;
 	yCoord = -1;
 }
 
-EmptyZone::EmptyZone(char zone, int xPosition, int yPosition) {
+EmptyZone::EmptyZone(char zone, int xPosition, int yPosition, int index) {
 	this->zoneType = zone;
+	this->emptyIndex = index;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
 }
@@ -54,4 +56,12 @@ void EmptyZone::setNeighborPopulation(int tmpPopulation) {
 
 vector<int> EmptyZone::getNeighborsPopulation() const {
 	return neighborsPopulation;
+}
+
+void EmptyZone::setIndex(int index) {
+	this->emptyIndex = index;
+}
+
+int EmptyZone::getIndex() const {
+	return emptyIndex;
 }

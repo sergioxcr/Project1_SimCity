@@ -34,7 +34,7 @@ struct Region {
 void readFiles();
 
 //Sets the X and Y Coordinates for each Cell
-void setIndex();
+void setCoordinates();
 
 //Sets Neighbors(zoneType) for each cell
 void setNeighbors();
@@ -47,7 +47,13 @@ void setNeighborsPopulation();
 void displayNeighborsPopulation();
 
 //Displays the X and Y coordinates of each cell
+void displayCoordinates();
+
+void setIndex();
+
 void displayIndex();
+
+void displayPopulation();
 
 //Prints the 2d vector containing the region layout
 void displayRegion();

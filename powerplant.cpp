@@ -6,12 +6,14 @@ using namespace std;
 
 Powerplant::Powerplant() {
 	zoneType = 'P';
+	powerplantIndex = 0;
 	xCoord = -1;
 	yCoord = -1;
 }
 
-Powerplant::Powerplant(char zone, int xPosition, int yPosition) {
+Powerplant::Powerplant(char zone, int xPosition, int yPosition, int index) {
 	this->zoneType = zone;
+	this->powerplantIndex = index;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
 }
@@ -54,4 +56,12 @@ void Powerplant::setNeighborPopulation(int tmpPopulation) {
 
 vector<int> Powerplant::getNeighborsPopulation() const {
 	return neighborsPopulation;
+}
+
+void Powerplant::setIndex(int index) {
+	this->powerplantIndex = index;
+}
+
+int Powerplant::getIndex() const {
+	return powerplantIndex;
 }

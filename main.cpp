@@ -13,17 +13,19 @@ int main() {
 
 	readFiles();
 	setIndex();
+	setCoordinates();
 	setNeighbors();
 	setNeighborsPopulation();
-//	displayNeighbors();
-//	displayNeighborsPopulation();
+	//	displayNeighbors();
+	//	displayNeighborsPopulation();
 
 	while (isContinue() == true) {
 		displayRegion();
 		nextStep();
 	}
 
-//	displayIndex();
+	//	displayIndex();
+	displayPopulation();
 
 	return 0;
 }

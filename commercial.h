@@ -10,11 +10,12 @@ class Commercial : public City {
 	public:
 		//constructors
 		Commercial();
-		Commercial(char zone, int population, int pollution, int xPosition, int yPosition);
+		Commercial(char zone, int population, int pollution, int xPosition, int yPosition, int index);
 		//Sets
 		void setZoneType(char zone);
 		void setPopulation(int population);
 		void setPollution(int pollution);
+		void setIndex(int index);
 		void setXCoord(int xPosition);
 		void setYCoord(int yPosition);
 		void setNeighbor(char tmpZone);
@@ -22,6 +23,7 @@ class Commercial : public City {
 		//Gets
 		int getPopulation() const;
 		int getPollution() const;
+		int getIndex() const;
 		int getXCoord() const;
 		int getYCoord() const;
 		char getZoneType() const override;
@@ -30,6 +32,7 @@ class Commercial : public City {
 	private:
 		int commercialPopulation; 
 		int commercialPollution;
+		int commercialIndex;
 		int xCoord;
 		int yCoord;
 		char zoneType;
@@ -38,5 +41,10 @@ class Commercial : public City {
 };
 
 void increaseCommercial(vector<vector<City*>> &, City &);
+bool isPowerlineAdjacent(vector<char>);
+int isPopulationAdjacent(vector<int>);
+int totalAdjacentPopulation(vector<City*>);
+int smallerYCoord(vector<City*>);
+int smallerXCoord(vector<City*>);
 
 #endif
