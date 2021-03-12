@@ -10,9 +10,13 @@ class City {
 public:
 	//constructors
 	City();
-	City(int workers, int goods, int time, int rate, int xPosition, int yPosition, int population, int index);
+	City(int workers, int goods, int time, int rate, int xPosition, int yPosition, int population, int index, int totalPopulation, int rPopulation, int iPopulation, int cPopulation);
 
 	//Sets
+	void setTotalPopulation(int totalPopulation);
+	void setResPopulation(int rPopulation);
+	void setIndPopulation(int iPopulation);
+	void setComPopulation(int cPopulation);
 	void setNumWorkers(int numWorkers);
 	void setNumGoods(int numGoods);
 	void setTimeLimit(int timeLimit);
@@ -26,6 +30,10 @@ public:
 	virtual void setPopulation(int population);
 
 	//Gets
+	int getTotalPopulation() const;
+	int getResPopulation() const;
+	int getIndPopulation() const;
+	int getComPopulation() const;
 	int getWorkers() const;
 	int getGoods() const;
 	int getTimeLimit() const;
@@ -41,6 +49,10 @@ public:
 	virtual vector<int> getNeighborsPopulation() const;
 
 private:
+	int totPopulation;
+	int resPopulation;
+	int indPopulation;
+	int comPopulation;
 	int numWorkers;
 	int numGoods;
 	int timeLimit;

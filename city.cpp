@@ -5,6 +5,10 @@
 using namespace std;
 
 City::City() {
+	totPopulation = 0;
+	resPopulation = 0;
+	indPopulation = 0;
+	comPopulation = 0;
 	numWorkers = 10;
 	numGoods = 10;
 	timeLimit = 0;
@@ -15,7 +19,11 @@ City::City() {
 	cityPopulation = 0;
 }
 
-City::City(int workers, int goods, int time, int rate, int xPositon, int yPosition, int population, int index) {
+City::City(int workers, int goods, int time, int rate, int xPositon, int yPosition, int population, int index, int totalPopulation, int rPopulation, int iPopulation, int cPopulation) {
+	this->totPopulation = totalPopulation;
+	this->resPopulation = rPopulation;
+	this->indPopulation = iPopulation;
+	this->comPopulation = cPopulation;
 	this->numWorkers = workers;
 	this->numGoods = goods;
 	this->timeLimit = time;
@@ -24,6 +32,38 @@ City::City(int workers, int goods, int time, int rate, int xPositon, int yPositi
 	this->xCoord = xPositon;
 	this->yCoord = yPosition;
 	this->cityPopulation = population;
+}
+
+void City::setTotalPopulation(int totalPopulation) {
+	this->totPopulation = totalPopulation;
+}
+
+int City::getTotalPopulation() const {
+	return totPopulation;
+}
+
+void City::setResPopulation(int rPopulation) {
+	this->resPopulation = rPopulation;
+}
+
+int City::getResPopulation() const {
+	return resPopulation;
+}
+
+void City::setIndPopulation(int iPopulation) {
+	this->indPopulation = iPopulation;
+}
+
+int City::getIndPopulation() const {
+	return indPopulation;
+}
+
+void City::setComPopulation(int cPopulation) {
+	this->comPopulation = cPopulation;
+}
+
+int City::getComPopulation() const {
+	return comPopulation;
 }
 
 void City::setNumWorkers(int workers) {

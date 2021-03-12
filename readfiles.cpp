@@ -10,6 +10,8 @@ using namespace std;
 Config configFile;
 Region regionFile;
 City resources;
+
+int oldTotalPopulation = -1;
 //2D vectors that stores region layout
 vector<vector<City*>> region;
 vector<vector<City*>> oldRegion;
@@ -259,7 +261,7 @@ void displayRegion() {
 	}
 	else {
 		cout << "Time Step: " << configFile.timeStep << endl;
-		cout << "Available Workers: " << resources.getWorkers() << " Available Goods: " << resources.getGoods() << endl;
+		cout << "Available Workers: " << resources.getWorkers() << " Available Goods: " << resources.getGoods() << "--" << resources.getTotalPopulation() << " " << oldTotalPopulation << endl;
 		if (isValidRefresh(configFile.timeStep) == false) {
 			cout << endl;
 		}
@@ -296,7 +298,7 @@ void displayRegion() {
 		//don't print
 	}
 
-		oldRegion = region;
+		
 }
 
 //Displays the pollution in each cell
@@ -371,8 +373,8 @@ bool isValidRefresh(int currentStep) {
 
 //Checks if the time limit or if region layout has not changed from previous time step. If yes, sends flag to end program.
 bool isContinue() {
-	if (configFile.timeLimit == -1 || oldRegion == region)  {
-		configFile.timeLimit--;
+	if (configFile.timeLimit == -1 || resources.getTotalPopulation() == oldTotalPopulation)  {
+		configFile.timeLimit = -2;
 		displayRegion();
 		cout << "Pollution" << endl;
 		displayPollution();
@@ -386,6 +388,7 @@ bool isContinue() {
 	else {
 		configFile.timeStep++;
 		configFile.timeLimit--;
+		oldTotalPopulation = resources.getTotalPopulation();
 		return true;
 	}
 }
