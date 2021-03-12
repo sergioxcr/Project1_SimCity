@@ -15,7 +15,6 @@ int main() {
 	setIndex();
 	setCoordinates();
 	setNeighbors();
-	setNeighborsPopulation();
 	//	displayNeighbors();
 	//	displayNeighborsPopulation();
 

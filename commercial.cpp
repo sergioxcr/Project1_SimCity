@@ -195,7 +195,7 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 bool isPowerlineAdjacent(vector<char> neighbors) {
 	for (unsigned int i = 0; i < neighbors.size(); i++)
 	{
-		if (neighbors[i] == 'T') {
+		if (neighbors[i] == 'T' || neighbors[i] == '#') {
 			return true;
 		}
 	}

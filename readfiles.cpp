@@ -391,6 +391,7 @@ bool isContinue() {
 }
 
 void nextStep() {
+	setNeighborsPopulation();
 	//check commercial increase
 	increaseCommercial(region, resources);
 }
