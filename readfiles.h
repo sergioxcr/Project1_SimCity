@@ -42,17 +42,22 @@ void setNeighbors();
 //Displays Neighbors(zoneType) for each cell
 void displayNeighbors();
 
+//Sets the population of each adjacent zone to each zone
 void setNeighborsPopulation();
 
+//Displays the population of each adjacent zone to each zone
 void displayNeighborsPopulation();
 
 //Displays the X and Y coordinates of each cell
 void displayCoordinates();
 
+//Sets a number indicating position in the 2D vector
 void setIndex();
 
+//Displays the numbered position of each zone
 void displayIndex();
 
+//Displays the current population of each zone
 void displayPopulation();
 
 //Prints the 2d vector containing the region layout
@@ -70,6 +75,7 @@ bool isContinue();
 //Checks if Region vector needs to be displayed depending on the Refresh Rate given by config file
 bool isValidRefresh(int currentStep);
 
+//Increases the next zones available for population growth
 void nextStep();
 
 #endif

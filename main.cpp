@@ -10,7 +10,7 @@
 using namespace std;
 
 int main() {
-
+	//initial setup
 	readFiles();
 	setIndex();
 	setCoordinates();

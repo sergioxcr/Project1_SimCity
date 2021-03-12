@@ -190,6 +190,7 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 			}
 		}
 		tmpResources.setTotalPopulation(tmpResources.getTotalPopulation() + 1);
+		tmpResources.setComPopulation(tmpResources.getComPopulation() + 1);
 		tmpResources.setNumWorkers(tmpResources.getWorkers() - 1);
 		tmpResources.setNumGoods(tmpResources.getGoods() - 1);
 	}

@@ -6,12 +6,13 @@
 #include "readfiles.h"
 
 using namespace std;
+
 //Variables
 Config configFile;
 Region regionFile;
 City resources;
-
 int oldTotalPopulation = -1;
+
 //2D vectors that stores region layout
 vector<vector<City*>> region;
 vector<vector<City*>> oldRegion;
@@ -133,6 +134,7 @@ void setCoordinates() {
 	}
 }
 
+//Sets a number indicating position in the 2D vector
 void setIndex() {
 	int counter = 1;
 
@@ -144,6 +146,7 @@ void setIndex() {
 	}
 }
 
+//Displays the numbered position of each zone
 void displayIndex() {
 
 	for (auto& row : region) {
@@ -161,7 +164,7 @@ void displayIndex() {
 	cout << endl;
 }
 
-//Sets Neighbors(zoneType) for each cell
+//Sets Neighbors(zoneType) for each zone
 void setNeighbors() {
 	int xMin, xMax;
 	int yMin, yMax;
@@ -190,7 +193,7 @@ void setNeighbors() {
 	}
 }
 
-//Displays Neighbors(zoneType) for each cell
+//Displays Neighbors(zoneType) for each zone
 void displayNeighbors() {
 	vector<char> neighbors;
 
@@ -207,6 +210,7 @@ void displayNeighbors() {
 	}
 }
 
+//Sets the population of each adjacent zone to each zone
 void setNeighborsPopulation() {
 	int xMin, xMax;
 	int yMin, yMax;
@@ -235,6 +239,7 @@ void setNeighborsPopulation() {
 	}
 }
 
+//Displays the population of each adjacent zone to each zone
 void displayNeighborsPopulation() {
 	vector<int> neighborsPopulation;
 
@@ -261,13 +266,13 @@ void displayRegion() {
 	}
 	else {
 		cout << "Time Step: " << configFile.timeStep << endl;
-		cout << "Available Workers: " << resources.getWorkers() << " Available Goods: " << resources.getGoods() << "--" << resources.getTotalPopulation() << " " << oldTotalPopulation << endl;
+		cout << "Available Workers: " << resources.getWorkers() << " Available Goods: " << resources.getGoods() << endl;
 		if (isValidRefresh(configFile.timeStep) == false) {
 			cout << endl;
 		}
 	}
 
-	if (isValidRefresh(configFile.timeStep) == true)
+	if (isValidRefresh(configFile.timeStep) == true || configFile.timeLimit == -2)
 	{
 		for (int i = 0; i < regionFile.width * 2 + 2; i++)
 		{
@@ -337,6 +342,7 @@ void displayCoordinates() {
 	cout << endl;
 }
 
+//Displays the current population of each zone
 void displayPopulation() {
 	for (int i = 0; i < regionFile.width * 2 + 2; i++)
 	{
@@ -381,7 +387,7 @@ bool isContinue() {
 		cout << "The total populations for the region are:" << endl;
 		cout << "Residential: " << endl;
 		cout << "Industrial: " << endl;
-		cout << "Commercial: " << endl;
+		cout << "Commercial: " << resources.getComPopulation() << endl;
 		cout << "The total amount of pollution in the region is " << endl;
 		return false;
 	}
@@ -393,6 +399,7 @@ bool isContinue() {
 	}
 }
 
+//Increases the next zones available for population growth
 void nextStep() {
 	setNeighborsPopulation();
 	//check commercial increase
