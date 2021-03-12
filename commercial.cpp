@@ -189,7 +189,10 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 				increasePopulation(tmpRegion, index);
 			}
 		}
+		tmpResources.setNumWorkers(tmpResources.getWorkers() - 1);
+		tmpResources.setNumGoods(tmpResources.getGoods() - 1);
 	}
+
 }
 
 bool isPowerlineAdjacent(vector<char> neighbors) {

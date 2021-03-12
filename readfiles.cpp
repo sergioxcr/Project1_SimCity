@@ -371,7 +371,7 @@ bool isValidRefresh(int currentStep) {
 
 //Checks if the time limit or if region layout has not changed from previous time step. If yes, sends flag to end program.
 bool isContinue() {
-	if (configFile.timeLimit == -1 /*|| oldRegion == region*/)  {
+	if (configFile.timeLimit == -1 || oldRegion == region)  {
 		configFile.timeLimit--;
 		displayRegion();
 		cout << "Pollution" << endl;
