@@ -25,6 +25,8 @@ class EmptyZone : public City {
 		char getZoneType() const;
 		vector<char> getNeighbors() const;
 		vector<int> getNeighborsPopulation() const;
+		//Others
+		void clearNeighborsPopulation();
 	private:
 		int emptyIndex;
 		int xCoord;

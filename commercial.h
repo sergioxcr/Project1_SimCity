@@ -29,6 +29,8 @@ class Commercial : public City {
 		char getZoneType() const override;
 		vector<char> getNeighbors() const;
 		vector<int> getNeighborsPopulation() const;
+		//Others
+		void clearNeighborsPopulation();
 	private:
 		int commercialPopulation; 
 		int commercialPollution;

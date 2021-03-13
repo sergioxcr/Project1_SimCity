@@ -48,6 +48,9 @@ public:
 	virtual vector<char> getNeighbors() const;
 	virtual vector<int> getNeighborsPopulation() const;
 
+	//Others
+	virtual void clearNeighborsPopulation();
+
 private:
 	int totPopulation;
 	int resPopulation;

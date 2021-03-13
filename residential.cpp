@@ -78,6 +78,10 @@ vector<int> Residential::getNeighborsPopulation() const {
 	return neighborsPopulation;
 }
 
+void Residential::clearNeighborsPopulation() {
+	neighborsPopulation.clear();
+}
+
 void Residential::setIndex(int index) {
 	this->residentialIndex = index;
 }

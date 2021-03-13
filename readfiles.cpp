@@ -218,6 +218,12 @@ void setNeighborsPopulation() {
 
 	for (auto& row : region) {
 		for (auto& cell : row) {
+			cell->clearNeighborsPopulation();
+		}
+	}
+
+	for (auto& row : region) {
+		for (auto& cell : row) {
 			xMin = cell->getXCoord() - 1;
 			xMax = cell->getXCoord() + 1;
 			yMin = cell->getYCoord() - 1;

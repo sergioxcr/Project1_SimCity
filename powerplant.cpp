@@ -58,6 +58,10 @@ vector<int> Powerplant::getNeighborsPopulation() const {
 	return neighborsPopulation;
 }
 
+void Powerplant::clearNeighborsPopulation() {
+	neighborsPopulation.clear();
+}
+
 void Powerplant::setIndex(int index) {
 	this->powerplantIndex = index;
 }

@@ -58,6 +58,10 @@ vector<int> Road::getNeighborsPopulation() const {
 	return neighborsPopulation;
 }
 
+void Road::clearNeighborsPopulation() {
+	neighborsPopulation.clear();
+}
+
 void Road::setIndex(int index) {
 	this->roadIndex = index;
 }

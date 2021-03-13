@@ -58,6 +58,10 @@ vector<int> EmptyZone::getNeighborsPopulation() const {
 	return neighborsPopulation;
 }
 
+void EmptyZone::clearNeighborsPopulation() {
+	neighborsPopulation.clear();
+}
+
 void EmptyZone::setIndex(int index) {
 	this->emptyIndex = index;
 }

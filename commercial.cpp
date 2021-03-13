@@ -80,6 +80,10 @@ vector<int> Commercial::getNeighborsPopulation() const {
 	return neighborsPopulation;
 }
 
+void Commercial::clearNeighborsPopulation() {
+	neighborsPopulation.clear();
+}
+
 void Commercial::setIndex(int index) {
 	this->commercialIndex = index;
 }
@@ -88,11 +92,11 @@ int Commercial::getIndex() const {
 	return commercialIndex;
 }
 
+//checks all rules to increase commercial population by 1
 void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
-	vector<City*> canGrowRule1, canGrowRule2, canGrowRule3;
+	vector<City*> canGrow;
 	vector<char> neighbors;
 	vector<int> neighborsPopulation;
-	int flag = 0;
 	int index = -1;
 
 	if (tmpResources.getWorkers() > 0 && tmpResources.getGoods() > 0) {
@@ -102,90 +106,40 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 				neighborsPopulation = cell->getNeighborsPopulation();
 				if (cell->getZoneType() == 'C') {
 					if (cell->getPopulation() == 0 && isPowerlineAdjacent(neighbors) == true) {
-						canGrowRule1.push_back(cell);
-						flag = 1;
+						canGrow.push_back(cell);
 					}
-					else if (cell->getPopulation() == 0 && isPopulationAdjacent(neighborsPopulation) > 0 && flag != 1) {
-						canGrowRule2.push_back(cell);
-						flag = 2;
+					else if (cell->getPopulation() == 0 && isPopulationAdjacent(neighborsPopulation) > 0) {
+						canGrow.push_back(cell);
 					}
-					else if (cell->getPopulation() == 1 && isPopulationAdjacent(neighborsPopulation) > 1 && flag != 2) {
-						canGrowRule3.push_back(cell);
-						flag = 3;
+					else if (cell->getPopulation() == 1 && isPopulationAdjacent(neighborsPopulation) > 1) {
+						canGrow.push_back(cell);
 					}
 				}
+				neighborsPopulation.clear();
 			}
 		}
 
-		if (canGrowRule1.size() == 1) {
-			for (auto& cell : canGrowRule1) {
+		if (canGrow.size() == 1) {
+			for (auto& cell : canGrow) {
 				index = cell->getIndex();
 				increasePopulation(tmpRegion, index);
 			}
 		}
-		else if (canGrowRule1.size() > 1) {
-			if (isLargerPopulation(canGrowRule1) != -1) {
-				index = isLargerPopulation(canGrowRule1);
+		else if (canGrow.size() > 1) {
+			if (isLargerPopulation(canGrow) != -1) {
+				index = isLargerPopulation(canGrow);
 				increasePopulation(tmpRegion, index);
 			}
-			else if (totalAdjacentPopulation(canGrowRule1) != -1) {
-				index = totalAdjacentPopulation(canGrowRule1);
+			else if (totalAdjacentPopulation(canGrow) != -1) {
+				index = totalAdjacentPopulation(canGrow);
 				increasePopulation(tmpRegion, index);
 			}
-			else if (smallerYCoord(canGrowRule1) != -1) {
-				index = smallerYCoord(canGrowRule1);
+			else if (smallerYCoord(canGrow) != -1) {
+				index = smallerYCoord(canGrow);
 				increasePopulation(tmpRegion, index);
 			}
-			else if (smallerXCoord(canGrowRule1) != -1) {
-				index = smallerXCoord(canGrowRule1);
-				increasePopulation(tmpRegion, index);
-			}
-		}
-		else if (canGrowRule2.size() == 1) {
-			for (auto& cell : canGrowRule2) {
-				index = cell->getIndex();
-				increasePopulation(tmpRegion, index);
-			}
-		}
-		else if (canGrowRule2.size() > 1) {
-			if (isLargerPopulation(canGrowRule2) != -1) {
-				index = isLargerPopulation(canGrowRule2);
-				increasePopulation(tmpRegion, index);
-			}
-			else if (totalAdjacentPopulation(canGrowRule2) != -1) {
-				index = totalAdjacentPopulation(canGrowRule2);
-				increasePopulation(tmpRegion, index);
-			}
-			else if (smallerYCoord(canGrowRule2) != -1) {
-				index = smallerYCoord(canGrowRule2);
-				increasePopulation(tmpRegion, index);
-			}
-			else if (smallerXCoord(canGrowRule2) != -1) {
-				index = smallerXCoord(canGrowRule2);
-				increasePopulation(tmpRegion, index);
-			}
-		}
-		else if (canGrowRule3.size() == 1) {
-			for (auto& cell : canGrowRule3) {
-				index = cell->getIndex();
-				increasePopulation(tmpRegion, index);
-			}
-		}
-		else if (canGrowRule3.size() > 1) {
-			if (isLargerPopulation(canGrowRule3) != -1) {
-				index = isLargerPopulation(canGrowRule3);
-				increasePopulation(tmpRegion, index);
-			}
-			else if (totalAdjacentPopulation(canGrowRule3) != -1) { 				
-				index = totalAdjacentPopulation(canGrowRule3);
-				increasePopulation(tmpRegion, index);
-			}
-			else if (smallerYCoord(canGrowRule3) != -1) {
-				index = smallerYCoord(canGrowRule3);
-				increasePopulation(tmpRegion, index);
-			}
-			else if (smallerXCoord(canGrowRule3) != -1) {
-				index = smallerXCoord(canGrowRule3);
+			else if (smallerXCoord(canGrow) != -1) {
+				index = smallerXCoord(canGrow);
 				increasePopulation(tmpRegion, index);
 			}
 		}
@@ -194,9 +148,9 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 		tmpResources.setNumWorkers(tmpResources.getWorkers() - 1);
 		tmpResources.setNumGoods(tmpResources.getGoods() - 1);
 	}
-
 }
 
+//checks to see if there is a powerline adjacent to current zone
 bool isPowerlineAdjacent(vector<char> neighbors) {
 	for (unsigned int i = 0; i < neighbors.size(); i++)
 	{
@@ -208,6 +162,7 @@ bool isPowerlineAdjacent(vector<char> neighbors) {
 	return false;
 }
 
+//checks to see if there are adjacent zones with population and returns the number of zones with a population greater than 0
 int isPopulationAdjacent(vector<int> neighbors) {
 	int numCells = 0;
 
@@ -221,26 +176,27 @@ int isPopulationAdjacent(vector<int> neighbors) {
 	return numCells;
 }
 
+//checks which zone has a greater number of 
 int totalAdjacentPopulation(vector<City*> tmpRegion) {
 	int index = -1;
-	int numCells = 0;
-	int tmpNumCells = 0;
+	int totalPopulation = 0;
+	int tmpTotalPopulation = 0;
 	vector<int>neighbors;
 
 	for (auto& cell : tmpRegion) {
-		numCells = 0;
+		totalPopulation = 0;
 		neighbors = cell->getNeighborsPopulation();
 		for (unsigned int i = 0; i < neighbors.size(); i++)
 		{
 			if (neighbors[i] > 0) {
-				numCells++;
+				totalPopulation = totalPopulation + neighbors[i];
 			}
 		}
-		if (numCells > tmpNumCells) {
+		if (totalPopulation > tmpTotalPopulation) {
 			index = cell->getIndex();
-			tmpNumCells = numCells;
+			tmpTotalPopulation = totalPopulation;
 		}
-		else if (numCells == tmpNumCells) {
+		else if (totalPopulation == tmpTotalPopulation) {
 			index = -1;
 		}
 	}

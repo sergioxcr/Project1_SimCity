@@ -16,15 +16,16 @@ int main() {
 	setCoordinates();
 	setNeighbors();
 	//	displayNeighbors();
-	//	displayNeighborsPopulation();
+
 
 	while (isContinue() == true) {
 		displayRegion();
 		nextStep();
 	}
-
+	
+	displayNeighborsPopulation();
 	//	displayIndex();
-	displayPopulation();
+	//	displayPopulation();
 
 	return 0;
 }

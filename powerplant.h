@@ -25,6 +25,8 @@ public:
 	char getZoneType() const;
 	vector<char> getNeighbors() const;
 	vector<int> getNeighborsPopulation() const;
+	//Others
+	void clearNeighborsPopulation();
 private:
 	int powerplantIndex;
 	int xCoord;

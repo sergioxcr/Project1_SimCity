@@ -58,6 +58,10 @@ vector<int> PowerlineRoad::getNeighborsPopulation() const {
 	return neighborsPopulation;
 }
 
+void PowerlineRoad::clearNeighborsPopulation() {
+	neighborsPopulation.clear();
+}
+
 void PowerlineRoad::setIndex(int index) {
 	this->powerlineRoadIndex = index;
 }

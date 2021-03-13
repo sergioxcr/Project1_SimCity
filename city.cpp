@@ -9,8 +9,8 @@ City::City() {
 	resPopulation = 0;
 	indPopulation = 0;
 	comPopulation = 0;
-	numWorkers = 10;
-	numGoods = 10;
+	numWorkers = 12;
+	numGoods = 12;
 	timeLimit = 0;
 	refreshRate = 0;
 	index = 0;
@@ -144,6 +144,10 @@ void City::setNeighborPopulation(int tmpPopulation) {
 
 vector<int> City::getNeighborsPopulation() const {
 	return neighborsPopulation;
+}
+
+void City::clearNeighborsPopulation() {
+	neighborsPopulation.clear();
 }
 
 void City::setIndex(int index) {

@@ -78,6 +78,10 @@ vector<int> Industrial::getNeighborsPopulation() const {
 	return neighborsPopulation;
 }
 
+void Industrial::clearNeighborsPopulation() {
+	neighborsPopulation.clear();
+}
+
 void Industrial::setIndex(int index) {
 	this->industrialIndex = index;
 }

@@ -29,6 +29,8 @@ class Industrial : public City {
 		char getZoneType() const;
 		vector<char> getNeighbors() const;
 		vector<int> getNeighborsPopulation() const;
+		//Others
+		void clearNeighborsPopulation();
 	private:
 		int industrialPopulation;
 		int industrialPollution;
