@@ -409,7 +409,9 @@ bool isContinue() {
 void nextStep() {
 	setNeighborsPopulation();
 	//check commercial increase
-	increaseCommercial(region, resources);
+	while (resources.getWorkers() > 0 && resources.getGoods() > 0) {
+		increaseCommercial(region, resources);
+	}
 }
 
 /*

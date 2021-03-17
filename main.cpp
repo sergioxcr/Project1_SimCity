@@ -23,7 +23,7 @@ int main() {
 		nextStep();
 	}
 	
-	displayNeighborsPopulation();
+	//	displayNeighborsPopulation();
 	//	displayIndex();
 	//	displayPopulation();
 

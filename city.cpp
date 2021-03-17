@@ -168,10 +168,11 @@ void increasePopulation(vector<vector<City*>>& tmpRegion, int index) {
 	}
 }
 
-int isLargerPopulation(vector<City*> tmpRegion)
+int isLargerPopulation(vector<City*> &tmpRegion)
 {
 	int tmpPopulation = 0;
 	int index = -1;
+	vector<City*> canGrow;
 
 	for (auto& cell : tmpRegion) {
 		if (cell->getPopulation() > tmpPopulation) {
@@ -181,6 +182,15 @@ int isLargerPopulation(vector<City*> tmpRegion)
 		else if (cell->getPopulation() == tmpPopulation) {
 			index = -1;
 		}
+	}
+
+	if (index == -1) {
+		for (auto& cell : tmpRegion) {
+			if (cell->getPopulation() == tmpPopulation) {
+				canGrow.push_back(cell);
+			}
+		}
+		tmpRegion = canGrow;
 	}
 
 	return index;

@@ -71,7 +71,7 @@ private:
 };
 
 //check for larger population of same zone type
-int isLargerPopulation(vector<City*>);
+int isLargerPopulation(vector<City*> &);
 
 //check for larger num of neighbors of same zone type
 

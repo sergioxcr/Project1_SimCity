@@ -50,35 +50,35 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="residential.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="city.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="commercial.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="readfiles.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="industrial.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="powerplant.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="powerline.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="powerlineroad.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="road.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="emptyzone.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="industrial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="powerline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="powerlineroad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="powerplant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="readfiles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="residential.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="road.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
