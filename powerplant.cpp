@@ -6,16 +6,18 @@ using namespace std;
 
 Powerplant::Powerplant() {
 	zoneType = 'P';
+	hasGrown = 'N';
 	powerplantIndex = 0;
 	xCoord = -1;
 	yCoord = -1;
 }
 
-Powerplant::Powerplant(char zone, int xPosition, int yPosition, int index) {
+Powerplant::Powerplant(char zone, int xPosition, int yPosition, int index, char grown) {
 	this->zoneType = zone;
 	this->powerplantIndex = index;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
+	this->hasGrown = grown;
 }
 
 void Powerplant::setZoneType(char zone) {
@@ -68,4 +70,12 @@ void Powerplant::setIndex(int index) {
 
 int Powerplant::getIndex() const {
 	return powerplantIndex;
+}
+
+void Powerplant::setGrown(char grown) {
+	this->hasGrown = grown;
+}
+
+char Powerplant::getGrown() const {
+	return hasGrown;
 }

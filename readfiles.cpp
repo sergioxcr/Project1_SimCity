@@ -408,9 +408,42 @@ bool isContinue() {
 //Increases the next zones available for population growth
 void nextStep() {
 	setNeighborsPopulation();
+
+	switch (configFile.timeStep)
+	{
+	case 0:
+		resources.setNumWorkers(4);
+		resources.setNumGoods(1);
+		break;
+	case 1:
+		resources.setNumWorkers(10);
+		resources.setNumGoods(1);
+		break;
+	case 2:
+		resources.setNumWorkers(6);
+		resources.setNumGoods(4);
+		break;
+	case 3:
+		resources.setNumWorkers(4);
+		resources.setNumGoods(2);
+		break;
+	case 4:
+		resources.setNumWorkers(0);
+		resources.setNumGoods(1);
+		break;
+	default:
+		break;
+	}
+
 	//check commercial increase
 	while (resources.getWorkers() > 0 && resources.getGoods() > 0) {
 		increaseCommercial(region, resources);
+	}
+
+	for (auto& row : region) {
+		for (auto& cell : row) {
+			cell->setGrown('N');
+		}
 	}
 }
 

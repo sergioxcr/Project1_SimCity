@@ -6,6 +6,7 @@ using namespace std;
 
 Industrial::Industrial() {
 	zoneType = 'I';
+	hasGrown = 'N';
 	industrialIndex = 0;
 	industrialPopulation = 0;
 	industrialPollution = 0;
@@ -13,13 +14,14 @@ Industrial::Industrial() {
 	yCoord = -1;
 }
 
-Industrial::Industrial(char zone, int population, int pollution, int xPosition, int yPosition, int index) {
+Industrial::Industrial(char zone, int population, int pollution, int xPosition, int yPosition, int index, char grown) {
 	this->zoneType = zone;
 	this->industrialIndex = index;
 	this->industrialPopulation = population;
 	this->industrialPollution = pollution;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
+	this->hasGrown = grown;
 }
 
 void Industrial::setZoneType(char zone) {
@@ -88,4 +90,12 @@ void Industrial::setIndex(int index) {
 
 int Industrial::getIndex() const {
 	return industrialIndex;
+}
+
+void Industrial::setGrown(char grown) {
+	this->hasGrown = grown;
+}
+
+char Industrial::getGrown() const {
+	return hasGrown;
 }

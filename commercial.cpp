@@ -8,6 +8,7 @@ using namespace std;
 
 Commercial::Commercial() {
 	zoneType = 'C';
+	hasGrown = 'N';
 	commercialIndex = 0;
 	commercialPopulation = 0;
 	commercialPollution = 0;
@@ -15,13 +16,14 @@ Commercial::Commercial() {
 	yCoord = -1;
 }
 
-Commercial::Commercial(char zone, int population, int pollution, int xPosition, int yPosition, int index) {
+Commercial::Commercial(char zone, int population, int pollution, int xPosition, int yPosition, int index, char grown) {
 	this->zoneType = zone;
 	this->commercialIndex = index;
 	this->commercialPopulation = population;
 	this->commercialPollution = pollution;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
+	this->hasGrown = grown;
 }
 
 void Commercial::setZoneType(char zone) {
@@ -92,6 +94,14 @@ int Commercial::getIndex() const {
 	return commercialIndex;
 }
 
+void Commercial::setGrown(char grown) {
+	this->hasGrown = grown;
+}
+
+char Commercial::getGrown() const {
+	return hasGrown;
+}
+
 //checks all rules to increase commercial population by 1
 void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 	vector<City*> canGrow;
@@ -105,17 +115,15 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 				neighbors = cell->getNeighbors();
 				neighborsPopulation = cell->getNeighborsPopulation();
 				if (cell->getZoneType() == 'C') {
-					if (cell->getPopulation() == 0 && isPowerlineAdjacent(neighbors) == true) {
+					if (cell->getPopulation() == 0 && isPowerlineAdjacent(neighbors) == true && cell->getGrown() == 'N') {
 						canGrow.push_back(cell);
 					}
-					else if (cell->getPopulation() == 0 && isPopulationAdjacent(neighborsPopulation) > 0) {
+					else if (cell->getPopulation() == 0 && isPopulationAdjacent(neighborsPopulation) > 0 && cell->getGrown() == 'N') {
 						canGrow.push_back(cell);
 					}
-					else if (cell->getPopulation() == 1 && isPopulationAdjacent(neighborsPopulation) > 1) {
+					else if (cell->getPopulation() == 1 && isPopulationAdjacent(neighborsPopulation) > 1 && cell->getGrown() == 'N') {
 						canGrow.push_back(cell);
 					}
-					else
-						cout << cell->getIndex() << endl;
 				}
 				neighborsPopulation.clear();
 			}
@@ -125,24 +133,29 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 			for (auto& cell : canGrow) {
 				index = cell->getIndex();
 				increasePopulation(tmpRegion, index);
+				alreadyGrew(tmpRegion, index);
 			}
 		}
 		else if (canGrow.size() > 1) {
 			if (isLargerPopulation(canGrow) != -1) { 
 				index = isLargerPopulation(canGrow);
 				increasePopulation(tmpRegion, index);
+				alreadyGrew(tmpRegion, index);
 			}
 			else if (totalAdjacentPopulation(canGrow) != -1) {
 				index = totalAdjacentPopulation(canGrow);
 				increasePopulation(tmpRegion, index);
+				alreadyGrew(tmpRegion, index);
 			}
 			else if (smallerXCoord(canGrow) != -1) {
 				index = smallerXCoord(canGrow);
 				increasePopulation(tmpRegion, index);
+				alreadyGrew(tmpRegion, index);
 			} 
 			else if (smallerYCoord(canGrow) != -1) {
 				index = smallerYCoord(canGrow);
 				increasePopulation(tmpRegion, index);
+				alreadyGrew(tmpRegion, index);
 			}
 			else {
 			}

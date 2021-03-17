@@ -10,7 +10,7 @@ class Commercial : public City {
 	public:
 		//constructors
 		Commercial();
-		Commercial(char zone, int population, int pollution, int xPosition, int yPosition, int index);
+		Commercial(char zone, int population, int pollution, int xPosition, int yPosition, int index, char grown);
 		//Sets
 		void setZoneType(char zone);
 		void setPopulation(int population);
@@ -20,6 +20,7 @@ class Commercial : public City {
 		void setYCoord(int yPosition);
 		void setNeighbor(char tmpZone);
 		void setNeighborPopulation(int tmpPopulation);
+		void setGrown(char grown);
 		//Gets
 		int getPopulation() const;
 		int getPollution() const;
@@ -27,6 +28,7 @@ class Commercial : public City {
 		int getXCoord() const;
 		int getYCoord() const;
 		char getZoneType() const override;
+		char getGrown() const;
 		vector<char> getNeighbors() const;
 		vector<int> getNeighborsPopulation() const;
 		//Others
@@ -38,6 +40,7 @@ class Commercial : public City {
 		int xCoord;
 		int yCoord;
 		char zoneType;
+		char hasGrown;
 		vector<char>neighbors;
 		vector<int>neighborsPopulation;
 };

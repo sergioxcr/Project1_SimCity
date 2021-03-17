@@ -10,7 +10,7 @@ class City {
 public:
 	//constructors
 	City();
-	City(int workers, int goods, int time, int rate, int xPosition, int yPosition, int population, int index, int totalPopulation, int rPopulation, int iPopulation, int cPopulation);
+	City(int workers, int goods, int time, int rate, int xPosition, int yPosition, int population, int index, int totalPopulation, int rPopulation, int iPopulation, int cPopulation, char grown);
 
 	//Sets
 	void setTotalPopulation(int totalPopulation);
@@ -22,6 +22,7 @@ public:
 	void setTimeLimit(int timeLimit);
 	void setRefreshRate(int refreshRate);
 
+	virtual void setGrown(char grown);
 	virtual void setIndex(int index);
 	virtual void setXCoord(int xPosition);
 	virtual void setYCoord(int yPosition);
@@ -40,6 +41,7 @@ public:
 	int getRefreshRate() const;
 
 	virtual char getZoneType() const;
+	virtual char getGrown() const;
 	virtual int getPopulation() const;
 	virtual int getPollution() const;
 	virtual int getIndex() const;
@@ -66,6 +68,7 @@ private:
 	int xCoord;
 	int yCoord;
 	char zoneType = 'E';
+	char hasGrown;
 	vector<char>neighbors;
 	vector<int>neighborsPopulation;
 };
@@ -79,6 +82,7 @@ int isLargerPopulation(vector<City*> &);
 
 //check for smaller x coordinate
 
+void alreadyGrew(vector<vector<City*>>&, int);
 
 void increasePopulation(vector<vector<City*>>&, int);
 

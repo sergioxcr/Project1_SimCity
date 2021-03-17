@@ -6,12 +6,13 @@ using namespace std;
 
 EmptyZone::EmptyZone() {
 	zoneType = ' ';
+	hasGrown = 'N';
 	emptyIndex = 0;
 	xCoord = -1;
 	yCoord = -1;
 }
 
-EmptyZone::EmptyZone(char zone, int xPosition, int yPosition, int index) {
+EmptyZone::EmptyZone(char zone, int xPosition, int yPosition, int index, char grown) {
 	this->zoneType = zone;
 	this->emptyIndex = index;
 	this->xCoord = xPosition;
@@ -68,4 +69,12 @@ void EmptyZone::setIndex(int index) {
 
 int EmptyZone::getIndex() const {
 	return emptyIndex;
+}
+
+void EmptyZone::setGrown(char grown) {
+	this->hasGrown = grown;
+}
+
+char EmptyZone::getGrown() const {
+	return hasGrown;
 }

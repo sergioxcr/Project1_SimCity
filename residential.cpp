@@ -6,6 +6,7 @@ using namespace std;
 
 Residential::Residential() {
 	zoneType = 'R';
+	hasGrown = 'N';
 	residentialIndex = 0;
 	residentialPopulation = 0;
 	residentialPollution = 0;
@@ -13,13 +14,14 @@ Residential::Residential() {
 	yCoord = -1;
 }
 
-Residential::Residential(char zone, int population, int pollution, int xPosition, int yPosition, int index) {
+Residential::Residential(char zone, int population, int pollution, int xPosition, int yPosition, int index, char grown) {
 	this->zoneType = zone;
 	this->residentialIndex = index;
 	this->residentialPopulation = population;
 	this->residentialPollution = pollution;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
+	this->hasGrown = grown;
 }
 
 void Residential::setZoneType(char zone) {
@@ -88,4 +90,12 @@ void Residential::setIndex(int index) {
 
 int Residential::getIndex() const {
 	return residentialIndex;
+}
+
+void Residential::setGrown(char grown) {
+	this->hasGrown = grown;
+}
+
+char Residential::getGrown() const {
+	return hasGrown;
 }

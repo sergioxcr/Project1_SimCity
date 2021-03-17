@@ -5,12 +5,13 @@
 using namespace std;
 
 City::City() {
+	hasGrown = 'N';
 	totPopulation = 0;
 	resPopulation = 0;
 	indPopulation = 0;
 	comPopulation = 0;
-	numWorkers = 12;
-	numGoods = 12;
+	numWorkers = 0;
+	numGoods = 0;
 	timeLimit = 0;
 	refreshRate = 0;
 	index = 0;
@@ -19,7 +20,7 @@ City::City() {
 	cityPopulation = 0;
 }
 
-City::City(int workers, int goods, int time, int rate, int xPositon, int yPosition, int population, int index, int totalPopulation, int rPopulation, int iPopulation, int cPopulation) {
+City::City(int workers, int goods, int time, int rate, int xPositon, int yPosition, int population, int index, int totalPopulation, int rPopulation, int iPopulation, int cPopulation, char grown) {
 	this->totPopulation = totalPopulation;
 	this->resPopulation = rPopulation;
 	this->indPopulation = iPopulation;
@@ -32,6 +33,7 @@ City::City(int workers, int goods, int time, int rate, int xPositon, int yPositi
 	this->xCoord = xPositon;
 	this->yCoord = yPosition;
 	this->cityPopulation = population;
+	this->hasGrown = grown;
 }
 
 void City::setTotalPopulation(int totalPopulation) {
@@ -118,6 +120,10 @@ char City::getZoneType() const {
 	return zoneType;
 }
 
+char City::getGrown() const {
+	return hasGrown;
+}
+
 void City::setPopulation(int population) {
 	this->cityPopulation = population;
 }
@@ -158,11 +164,25 @@ int City::getIndex() const {
 	return index;
 }
 
+void City::setGrown(char grown) {
+	this->hasGrown = grown;
+}
+
 void increasePopulation(vector<vector<City*>>& tmpRegion, int index) {
 	for (auto& row : tmpRegion) {
 		for (auto& cell : row) {
 			if (cell->getIndex() == index) {
 				cell->setPopulation(cell->getPopulation() + 1);
+			}
+		}
+	}
+}
+
+void alreadyGrew(vector<vector<City*>>& tmpRegion, int index) {
+	for (auto& row : tmpRegion) {
+		for (auto& cell : row) {
+			if (cell->getIndex() == index) {
+				cell->setGrown('Y');
 			}
 		}
 	}

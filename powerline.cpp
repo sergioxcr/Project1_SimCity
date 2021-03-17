@@ -6,16 +6,18 @@ using namespace std;
 
 Powerline::Powerline() {
 	zoneType = 'T';
+	hasGrown = 'N';
 	powerlineIndex = 0;
 	xCoord = -1;
 	yCoord = -1;
 }
 
-Powerline::Powerline(char zone, int xPosition, int yPosition, int index) {
+Powerline::Powerline(char zone, int xPosition, int yPosition, int index, char grown) {
 	this->zoneType = zone;
 	this->powerlineIndex = index;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
+	this->hasGrown = grown;
 }
 
 void Powerline::setZoneType(char zone) {
@@ -68,4 +70,12 @@ void Powerline::setIndex(int index) {
 
 int Powerline::getIndex() const {
 	return powerlineIndex;
+}
+
+void Powerline::setGrown(char grown) {
+	this->hasGrown = grown;
+}
+
+char Powerline::getGrown() const {
+	return hasGrown;
 }

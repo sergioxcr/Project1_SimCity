@@ -6,16 +6,18 @@ using namespace std;
 
 Road::Road() {
 	zoneType = '-';
+	hasGrown = 'N';
 	roadIndex = 0;
 	xCoord = -1;
 	yCoord = -1;
 }
 
-Road::Road(char zone, int xPosition, int yPosition, int index) {
+Road::Road(char zone, int xPosition, int yPosition, int index, char grown) {
 	this->zoneType = zone;
 	this->roadIndex = index;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
+	this->hasGrown = grown;
 }
 
 void Road::setZoneType(char zone) {
@@ -68,4 +70,12 @@ void Road::setIndex(int index) {
 
 int Road::getIndex() const {
 	return roadIndex;
+}
+
+void Road::setGrown(char grown) {
+	this->hasGrown = grown;
+}
+
+char Road::getGrown() const {
+	return hasGrown;
 }
