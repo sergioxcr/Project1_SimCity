@@ -48,6 +48,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="steps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="city.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="road.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="steps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
