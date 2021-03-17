@@ -150,6 +150,7 @@
     <ClCompile Include="readfiles.cpp" />
     <ClCompile Include="residential.cpp" />
     <ClCompile Include="road.cpp" />
+    <ClCompile Include="steps.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="city.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="readfiles.h" />
     <ClInclude Include="residential.h" />
     <ClInclude Include="road.h" />
+    <ClInclude Include="steps.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

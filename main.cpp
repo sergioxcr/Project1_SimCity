@@ -10,17 +10,22 @@
 using namespace std;
 
 int main() {
-
+	//initial setup
 	readFiles();
 	setIndex();
+	setCoordinates();
 	setNeighbors();
-//	displayNeighbors();
+	//	displayNeighbors();
+
 
 	while (isContinue() == true) {
 		displayRegion();
+		nextStep();
 	}
-
-//	displayIndex();
+	
+	//	displayNeighborsPopulation();
+	//	displayIndex();
+	//	displayPopulation();
 
 	return 0;
 }
