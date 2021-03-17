@@ -85,5 +85,8 @@ int isLargerPopulation(vector<City*> &);
 void alreadyGrew(vector<vector<City*>>&, int);
 
 void increasePopulation(vector<vector<City*>>&, int);
+int totalAdjacentPopulation(vector<City*>&);
+int smallerYCoord(vector<City*>&);
+int smallerXCoord(vector<City*>&);
 
 #endif

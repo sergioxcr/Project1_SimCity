@@ -15,8 +15,6 @@ int oldTotalPopulation = -1;
 
 //2D vectors that stores region layout
 vector<vector<City*>> region;
-vector<vector<City*>> oldRegion;
-
 
 //Calls functions to read and parse files needed to make region layout
 void readFiles() {

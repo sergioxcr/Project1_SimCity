@@ -48,8 +48,5 @@ class Commercial : public City {
 void increaseCommercial(vector<vector<City*>> &, City &);
 bool isPowerlineAdjacent(vector<char>);
 int isPopulationAdjacent(vector<int>);
-int totalAdjacentPopulation(vector<City*> &);
-int smallerYCoord(vector<City*> &);
-int smallerXCoord(vector<City*> &);
 
 #endif

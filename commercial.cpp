@@ -132,34 +132,27 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 		if (canGrow.size() == 1) {
 			for (auto& cell : canGrow) {
 				index = cell->getIndex();
-				increasePopulation(tmpRegion, index);
-				alreadyGrew(tmpRegion, index);
 			}
 		}
 		else if (canGrow.size() > 1) {
 			if (isLargerPopulation(canGrow) != -1) { 
 				index = isLargerPopulation(canGrow);
-				increasePopulation(tmpRegion, index);
-				alreadyGrew(tmpRegion, index);
 			}
 			else if (totalAdjacentPopulation(canGrow) != -1) {
 				index = totalAdjacentPopulation(canGrow);
-				increasePopulation(tmpRegion, index);
-				alreadyGrew(tmpRegion, index);
 			}
 			else if (smallerXCoord(canGrow) != -1) {
 				index = smallerXCoord(canGrow);
-				increasePopulation(tmpRegion, index);
-				alreadyGrew(tmpRegion, index);
 			} 
 			else if (smallerYCoord(canGrow) != -1) {
 				index = smallerYCoord(canGrow);
-				increasePopulation(tmpRegion, index);
-				alreadyGrew(tmpRegion, index);
 			}
 			else {
 			}
 		}
+		increasePopulation(tmpRegion, index);
+		alreadyGrew(tmpRegion, index);
+
 		tmpResources.setTotalPopulation(tmpResources.getTotalPopulation() + 1);
 		tmpResources.setComPopulation(tmpResources.getComPopulation() + 1);
 		tmpResources.setNumWorkers(tmpResources.getWorkers() - 1);
@@ -191,116 +184,4 @@ int isPopulationAdjacent(vector<int> neighbors) {
 	}
 
 	return numCells;
-}
-
-//checks which zone has a greater number of 
-int totalAdjacentPopulation(vector<City*> &tmpRegion) {
-	int index = -1;
-	int totalPopulation = 0;
-	int tmpTotalPopulation = 0;
-	vector<int> neighbors;
-	vector<City*> canGrow;
-
-	for (auto& cell : tmpRegion) {
-		totalPopulation = 0;
-		neighbors = cell->getNeighborsPopulation();
-		for (unsigned int i = 0; i < neighbors.size(); i++)
-		{
-			if (neighbors[i] > 0) {
-				totalPopulation = totalPopulation + neighbors[i];
-			}
-		}
-		if (totalPopulation > tmpTotalPopulation) {
-			index = cell->getIndex();
-			tmpTotalPopulation = totalPopulation;
-		}
-		else if (totalPopulation == tmpTotalPopulation) {
-			index = -1;
-		}
-		neighbors.clear();
-	}
-	if (index == -1) {
-		for (auto& cell : tmpRegion) {
-			totalPopulation = 0;
-			neighbors = cell->getNeighborsPopulation();
-			for (unsigned int i = 0; i < neighbors.size(); i++)
-			{
-				if (neighbors[i] > 0) {
-					totalPopulation = totalPopulation + neighbors[i];
-				}
-			}
-			if (totalPopulation == tmpTotalPopulation) {
-				canGrow.push_back(cell);
-			}
-			neighbors.clear();
-		}
-		tmpRegion = canGrow;
-	}
-	return index;
-}
-
-int smallerYCoord(vector<City*> &tmpRegion) {
-	int index = -1;
-	int tmpYCoord = 0;
-	vector<City*> canGrow;
-
-	for (auto& cell : tmpRegion) {
-		if (cell->getYCoord() >= tmpYCoord) {
-			tmpYCoord = cell->getYCoord() + 1;
-		}
-	}
-
-	for (auto& cell : tmpRegion) {
-		if (cell->getYCoord() < tmpYCoord) {
-			index = cell->getIndex();
-			tmpYCoord = cell->getYCoord();
-		}
-		else if (cell->getYCoord() == tmpYCoord) {
-			index = -1;
-		}
-	}
-
-	if (index == -1) {
-		for (auto& cell : tmpRegion) {
-			if (cell->getYCoord() == tmpYCoord) {
-				canGrow.push_back(cell);
-			}
-		}
-		tmpRegion = canGrow;
-	}
-
-	return index;
-}
-
-int smallerXCoord(vector<City*> &tmpRegion) {
-	int index = -1;
-	int tmpXCoord = 0;
-	vector<City*> canGrow;
-
-	for (auto& cell : tmpRegion) {
-		if (cell->getXCoord() >= tmpXCoord) {
-			tmpXCoord = cell->getXCoord() + 1;
-		}
-	}
-
-	for (auto& cell : tmpRegion) {
-		if (cell->getXCoord() < tmpXCoord) {
-			index = cell->getIndex();
-			tmpXCoord = cell->getXCoord();
-		}
-		else if (cell->getXCoord() == tmpXCoord) {
-			index = -1;
-		}
-	}
-
-	if (index == -1) {
-		for (auto& cell : tmpRegion) {
-			if (cell->getXCoord() == tmpXCoord) {
-				canGrow.push_back(cell);
-			}
-		}
-		tmpRegion = canGrow;
-	}
-
-	return index;
 }
