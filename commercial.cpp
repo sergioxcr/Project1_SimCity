@@ -4,8 +4,6 @@
 
 using namespace std;
 
-
-
 Commercial::Commercial() {
 	zoneType = 'C';
 	hasGrown = 'N';
@@ -103,7 +101,7 @@ char Commercial::getGrown() const {
 }
 
 //checks all rules to increase commercial population by 1
-void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
+void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources, bool &isDone) {
 	vector<City*> canGrow;
 	vector<char> neighbors;
 	vector<int> neighborsPopulation;
@@ -118,18 +116,21 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 					if (cell->getPopulation() == 0 && isPowerlineAdjacent(neighbors) == true && cell->getGrown() == 'N') {
 						canGrow.push_back(cell);
 					}
-					else if (cell->getPopulation() == 0 && isPopulationAdjacent(neighborsPopulation) > 0 && cell->getGrown() == 'N') {
+					else if (cell->getPopulation() == 0 && isPopulationAdjacent(neighborsPopulation, 1) > 0 && cell->getGrown() == 'N') {
 						canGrow.push_back(cell);
 					}
-					else if (cell->getPopulation() == 1 && isPopulationAdjacent(neighborsPopulation) > 1 && cell->getGrown() == 'N') {
+					else if (cell->getPopulation() == 1 && isPopulationAdjacent(neighborsPopulation, 1) > 1 && cell->getGrown() == 'N') {
 						canGrow.push_back(cell);
 					}
 				}
 				neighborsPopulation.clear();
 			}
 		}
-
-		if (canGrow.size() == 1) {
+		if (canGrow.size() == 0) {
+			isDone = true;
+			return;
+		}
+		else if (canGrow.size() == 1) {
 			for (auto& cell : canGrow) {
 				index = cell->getIndex();
 			}
@@ -158,30 +159,4 @@ void increaseCommercial(vector<vector<City*>> &tmpRegion, City &tmpResources) {
 		tmpResources.setNumWorkers(tmpResources.getWorkers() - 1);
 		tmpResources.setNumGoods(tmpResources.getGoods() - 1);
 	}
-}
-
-//checks to see if there is a powerline adjacent to current zone
-bool isPowerlineAdjacent(vector<char> neighbors) {
-	for (unsigned int i = 0; i < neighbors.size(); i++)
-	{
-		if (neighbors[i] == 'T' || neighbors[i] == '#') {
-			return true;
-		}
-	}
-
-	return false;
-}
-
-//checks to see if there are adjacent zones with population and returns the number of zones with a population greater than 0
-int isPopulationAdjacent(vector<int> neighbors) {
-	int numCells = 0;
-
-	for (unsigned int i = 0; i < neighbors.size(); i++)
-	{
-		if (neighbors[i] > 0) {
-			numCells++;
-		}
-	}
-
-	return numCells;
 }

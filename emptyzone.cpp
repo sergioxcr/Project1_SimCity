@@ -17,6 +17,7 @@ EmptyZone::EmptyZone(char zone, int xPosition, int yPosition, int index, char gr
 	this->emptyIndex = index;
 	this->xCoord = xPosition;
 	this->yCoord = yPosition;
+	this->hasGrown = grown;
 }
 
 void EmptyZone::setZoneType(char zone) {

@@ -99,3 +99,65 @@ void Industrial::setGrown(char grown) {
 char Industrial::getGrown() const {
 	return hasGrown;
 }
+
+void increaseIndustrial(vector<vector<City*>>& tmpRegion, City& tmpResources, bool &isDone) {
+	vector<City*> canGrow;
+	vector<char> neighbors;
+	vector<int> neighborsPopulation;
+	int index = -1;
+
+	if (tmpResources.getWorkers() > 1) {
+		for (auto& row : tmpRegion) {
+			for (auto& cell : row) {
+				neighbors = cell->getNeighbors();
+				neighborsPopulation = cell->getNeighborsPopulation();
+				if (cell->getZoneType() == 'I') {
+					if (cell->getPopulation() == 0 && isPowerlineAdjacent(neighbors) == true && cell->getGrown() == 'N') {
+						canGrow.push_back(cell);
+					}
+					else if (cell->getPopulation() == 0 && isPopulationAdjacent(neighborsPopulation, 1) > 0 && cell->getGrown() == 'N') {
+						canGrow.push_back(cell);
+					}
+					else if (cell->getPopulation() == 1 && isPopulationAdjacent(neighborsPopulation, 1) > 1 && cell->getGrown() == 'N') {
+						canGrow.push_back(cell);
+					}
+					else if (cell->getPopulation() == 2 && isPopulationAdjacent(neighborsPopulation, 2) > 3 && cell->getGrown() == 'N') {
+						canGrow.push_back(cell);
+					}
+				}
+				neighborsPopulation.clear();
+			}
+		}
+
+		if (canGrow.size() == 0) {
+			isDone = true;
+			return;
+		}
+		else if (canGrow.size() == 1) {
+			for (auto& cell : canGrow) {
+				index = cell->getIndex();
+			}
+		}
+		else if (canGrow.size() > 1) {
+			if (isLargerPopulation(canGrow) != -1) {
+				index = isLargerPopulation(canGrow);
+			}
+			else if (totalAdjacentPopulation(canGrow) != -1) {
+				index = totalAdjacentPopulation(canGrow);
+			}
+			else if (smallerXCoord(canGrow) != -1) {
+				index = smallerXCoord(canGrow);
+			}
+			else if (smallerYCoord(canGrow) != -1) {
+				index = smallerYCoord(canGrow);
+			}
+		}
+		increasePopulation(tmpRegion, index);
+		alreadyGrew(tmpRegion, index);
+
+		tmpResources.setTotalPopulation(tmpResources.getTotalPopulation() + 1);
+		tmpResources.setIndPopulation(tmpResources.getIndPopulation() + 1);
+		tmpResources.setNumWorkers(tmpResources.getWorkers() - 2);
+		tmpResources.setNumGoods(tmpResources.getGoods() + 1);
+	}
+}

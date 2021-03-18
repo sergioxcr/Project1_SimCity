@@ -76,17 +76,19 @@ private:
 //check for larger population of same zone type
 int isLargerPopulation(vector<City*> &);
 
-//check for larger num of neighbors of same zone type
-
-//check for smaller y coordinate
-
-//check for smaller x coordinate
-
 void alreadyGrew(vector<vector<City*>>&, int);
 
 void increasePopulation(vector<vector<City*>>&, int);
+
 int totalAdjacentPopulation(vector<City*>&);
+
+//check for smaller y coordinate
 int smallerYCoord(vector<City*>&);
+
+//check for smaller x coordinate
 int smallerXCoord(vector<City*>&);
+
+bool isPowerlineAdjacent(vector<char>);
+int isPopulationAdjacent(vector<int>, int);
 
 #endif

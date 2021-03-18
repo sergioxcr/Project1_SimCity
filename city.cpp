@@ -327,3 +327,54 @@ int smallerXCoord(vector<City*>& tmpRegion) {
 
 	return index;
 }
+
+//checks to see if there is a powerline adjacent to current zone
+bool isPowerlineAdjacent(vector<char> neighbors) {
+	for (unsigned int i = 0; i < neighbors.size(); i++)
+	{
+		if (neighbors[i] == 'T' || neighbors[i] == '#') {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+//checks to see if there are adjacent zones with population and returns the number of zones with a population greater than 0
+int isPopulationAdjacent(vector<int> neighbors, int atLeast) {
+	int numCells = 0;
+	if (atLeast == 1) {
+		for (unsigned int i = 0; i < neighbors.size(); i++)
+		{
+			if (neighbors[i] > 0) {
+				numCells++;
+			}
+		}
+	}
+	else if (atLeast == 2) {
+		for (unsigned int i = 0; i < neighbors.size(); i++)
+		{
+			if (neighbors[i] > 1) {
+				numCells++;
+			}
+		}
+	}
+	else if (atLeast == 3) {
+		for (unsigned int i = 0; i < neighbors.size(); i++)
+		{
+			if (neighbors[i] > 2) {
+				numCells++;
+			}
+		}
+	}
+	else if (atLeast == 4) {
+		for (unsigned int i = 0; i < neighbors.size(); i++)
+		{
+			if (neighbors[i] > 3) {
+				numCells++;
+			}
+		}
+	}
+
+	return numCells;
+}

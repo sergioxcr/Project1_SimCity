@@ -45,4 +45,6 @@ class Residential : public City {
 		vector<int>neighborsPopulation;
 };
 
+void increaseResidential(vector<vector<City*>>&, City&);
+
 #endif

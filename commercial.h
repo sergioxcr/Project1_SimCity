@@ -45,8 +45,7 @@ class Commercial : public City {
 		vector<int>neighborsPopulation;
 };
 
-void increaseCommercial(vector<vector<City*>> &, City &);
-bool isPowerlineAdjacent(vector<char>);
-int isPopulationAdjacent(vector<int>);
+void increaseCommercial(vector<vector<City*>> &, City &, bool &);
+
 
 #endif
